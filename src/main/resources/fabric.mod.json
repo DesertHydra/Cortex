@@ -5,7 +5,8 @@
   "name": "Cortex",
   "description": "Give me back my crystals!!!",
   "authors": [
-    "Ennui Langeweile"
+    "Ennui Langeweile",
+    "Isan AWrathfulVoid"
   ],
   "contact": {
     "homepage": "https://github.com/DesertHydra/Cortex",
@@ -26,6 +27,7 @@
   "depends": {
     "fabricloader": ">=0.16.2",
     "minecraft": "~1.21.1",
+    "java": ">=21",
     "fabric-api": ">=0.104.0"
   }
 }

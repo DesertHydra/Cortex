@@ -6,14 +6,16 @@
 package deserthydra.cortex.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class RedstoneFormationBlock extends HorizontalFacingBlock {
@@ -60,6 +62,17 @@ public class RedstoneFormationBlock extends HorizontalFacingBlock {
 	protected float getMaxModelOffset() {
 		// 0.125F is almost perfect, with neighboring blocks being able to touch each other
 		// However, it causes a bit of Z-fighting, which is bad!
-		return 0.125F;
+		//return 0.125F;
+		return 0.0625F;
+	}
+
+	@Override
+	protected boolean isRedstonePowerSource(BlockState state) {
+		return true;
+	}
+
+	@Override
+	protected int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+		return 15;
 	}
 }
