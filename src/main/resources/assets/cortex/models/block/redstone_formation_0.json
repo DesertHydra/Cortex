@@ -1,7 +1,7 @@
 {
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "cortex:block/redstone_formation",
+		"0": "cortex:block/redstone_formation_0",
 		"particle": "minecraft:block/redstone_block"
 	},
 	"elements": [
