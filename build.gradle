@@ -41,6 +41,9 @@ processResources {
 	filesMatching('quilt.mod.json') {
 		expand 'version': version, 'group': project.group
 	}
+
+	// It would be super confusing if the lang/README was on the JAR file
+	exclude("assets/cortex/lang/README.md")
 }
 
 tasks.withType(JavaCompile).configureEach {

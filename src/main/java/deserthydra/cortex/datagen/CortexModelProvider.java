@@ -10,8 +10,11 @@ import deserthydra.cortex.item.CortexItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.model.BlockStateModelGenerator;
-import net.minecraft.data.client.model.Models;
+import net.minecraft.data.client.model.*;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.Direction;
+
+import java.util.List;
 
 public class CortexModelProvider extends FabricModelProvider {
 	public CortexModelProvider(FabricDataOutput output) {
@@ -20,7 +23,44 @@ public class CortexModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateBlockStateModels(BlockStateModelGenerator generator) {
-		generator.registerNorthDefaultHorizontalRotation(CortexBlocks.REDSTONE_FORMATION);
+		generator.blockStateCollector.accept(
+			VariantsBlockStateSupplier.create(
+				CortexBlocks.REDSTONE_FORMATION
+			)
+			.coordinate(
+				BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
+					.register(Direction.EAST, List.of(
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R90)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R90)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1"))
+					))
+					.register(Direction.SOUTH, List.of(
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R180)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R180)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1"))
+					))
+					.register(Direction.WEST, List.of(
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R270)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R270)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1"))
+					))
+					.register(Direction.NORTH, List.of(
+						BlockStateVariant.create()
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
+						BlockStateVariant.create()
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1"))
+					))
+			)
+		);
 	}
 
 	@Override
