@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cortex:block/redstone_formation",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cortex:block/redstone_formation"
+    },
+    "facing=south": {
+      "model": "cortex:block/redstone_formation",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cortex:block/redstone_formation",
+      "y": 270
+    }
+  }
+}

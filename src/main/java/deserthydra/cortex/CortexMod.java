@@ -7,11 +7,9 @@ package deserthydra.cortex;
 
 import deserthydra.cortex.block.CortexBlocks;
 import deserthydra.cortex.item.CortexItems;
+import deserthydra.cortex.worldgen.CortexPlacedFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.OreConfiguredFeatures;
 
@@ -23,8 +21,8 @@ public class CortexMod implements ModInitializer {
 
 		BiomeModifications.addFeature(
 			context -> context.hasFeature(OreConfiguredFeatures.ORE_REDSTONE),
-			GenerationStep.Feature.VEGETAL_DECORATION,
-			RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of("cortex", "redstone_buds"))
+			GenerationStep.Feature.UNDERGROUND_DECORATION,
+			CortexPlacedFeatures.REDSTONE_FORMATIONS
 		);
 	}
 }
