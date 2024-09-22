@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "cortex",
+  "version": "${version}",
+  "name": "Cortex",
+  "description": "Give me back my crystals!!!",
+  "authors": [
+    "Ennui Langeweile"
+  ],
+  "contact": {
+    "homepage": "https://github.com/DesertHydra/Cortex",
+    "issues": "https://github.com/DesertHydra/Cortex/issues"
+  },
+  "license": "MPL-2.0",
+  "icon": "assets/cortex/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": ["deserthydra.cortex.datagen.CortexDataGenerator"],
+    "main": [
+      "deserthydra.cortex.CortexMod"
+    ]
+  },
+  "mixins": [
+    "cortex.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.2",
+    "minecraft": "~1.21.1",
+    "fabric-api": ">=0.104.0"
+  }
+}

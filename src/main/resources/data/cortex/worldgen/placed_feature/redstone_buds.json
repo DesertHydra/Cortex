@@ -1,0 +1,24 @@
+{
+  "feature": "cortex:redstone_buds",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 128
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 16
+        },
+        "min_inclusive": {
+          "above_bottom": -32
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
