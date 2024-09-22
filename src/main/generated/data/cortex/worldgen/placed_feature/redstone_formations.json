@@ -1,8 +1,8 @@
 {
-  "feature": "cortex:redstone_buds",
+  "feature": "cortex:redstone_formations",
   "placement": [
     {
-      "type": "minecraft:count_on_every_layer",
+      "type": "minecraft:count",
       "count": 128
     },
     {

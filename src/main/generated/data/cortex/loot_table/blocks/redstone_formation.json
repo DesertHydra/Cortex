@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "cortex:redstone_crystals"
+              "name": "cortex:redstone_formation"
             },
             {
               "type": "minecraft:item",

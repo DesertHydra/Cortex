@@ -5,6 +5,7 @@
  */
 package deserthydra.cortex.block;
 
+import deserthydra.cortex.CortexUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -12,17 +13,19 @@ import net.minecraft.block.MapColor;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
 
 public class CortexBlocks {
-	public static final Block REDSTONE_CRYSTALS = Registry.register(
+	public static final Block REDSTONE_FORMATION = Registry.register(
 		Registries.BLOCK,
-		Identifier.of("cortex", "redstone_crystals"),
-		new RedstoneCrystalsBlock(
+		CortexUtils.id("redstone_formation"),
+		new RedstoneFormationBlock(
 			AbstractBlock.Settings.create()
 				.mapColor(MapColor.FIRE)
 				.toolRequired()
 				.strength(5.0F, 6.0F)
+				.luminance(state -> 7)
+				.dynamicBounds()
+				.offsetType(AbstractBlock.OffsetType.XZ)
 				.sounds(BlockSoundGroup.METAL)
 				.solidBlock(Blocks::nonSolid)
 		)

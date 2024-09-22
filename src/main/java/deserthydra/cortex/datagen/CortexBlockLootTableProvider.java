@@ -27,10 +27,10 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 
 	@Override
 	public void generate() {
-		this.add(CortexBlocks.REDSTONE_CRYSTALS, this.dropsWithSilkTouch(
-			CortexBlocks.REDSTONE_CRYSTALS,
+		this.add(CortexBlocks.REDSTONE_FORMATION, this.dropsWithSilkTouch(
+			CortexBlocks.REDSTONE_FORMATION,
 			this.applyExplosionDecay(
-				CortexItems.REDSTONE_CRYSTALS,
+				CortexItems.REDSTONE_FORMATION,
 				ItemEntry.builder(Items.REDSTONE)
 					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 5.0F)))
 					.apply(ApplyBonusLootFunction.method_456(this.field_51845.getLookupOrThrow(RegistryKeys.ENCHANTMENT).getHolderOrThrow(Enchantments.FORTUNE)))
