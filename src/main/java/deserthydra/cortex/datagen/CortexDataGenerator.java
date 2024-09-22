@@ -36,6 +36,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator generator) {
 		var pack = generator.createPack();
 		pack.addProvider(CortexBlockLootTableProvider::new);
+		pack.addProvider(CortexBlockTagProvider::new);
 		pack.addProvider(CortexLanguageProvider::new);
 		pack.addProvider(CortexModelProvider::new);
 		pack.addProvider(CortexWorldGenProvider::new);

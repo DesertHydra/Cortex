@@ -32,7 +32,7 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 			this.applyExplosionDecay(
 				CortexItems.REDSTONE_FORMATION,
 				ItemEntry.builder(Items.REDSTONE)
-					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 5.0F)))
+					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 4.0F)))
 					.apply(ApplyBonusLootFunction.method_456(this.field_51845.getLookupOrThrow(RegistryKeys.ENCHANTMENT).getHolderOrThrow(Enchantments.FORTUNE)))
 			)
 		));
