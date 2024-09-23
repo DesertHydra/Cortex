@@ -69,6 +69,8 @@ public class CortexModelProvider extends FabricModelProvider {
 					))
 			)
 		);
+
+		generator.registerNorthDefaultHorizontalRotation(CortexBlocks.LAPIS_LAZULI_FORMATION);
 	}
 
 	@Override

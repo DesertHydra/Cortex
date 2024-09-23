@@ -13,16 +13,16 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
-public class RedstoneFormationBlock extends HorizontalFacingBlock {
+// TODO - Unify this with redstone
+public class LapisFormationBlock extends HorizontalFacingBlock {
 	public static final MapCodec<LapisFormationBlock> CODEC = createCodec(LapisFormationBlock::new);
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 13.0, 14.0);
 
-	public RedstoneFormationBlock(Settings settings) {
+	public LapisFormationBlock(Settings settings) {
 		super(settings);
 	}
 
@@ -64,15 +64,5 @@ public class RedstoneFormationBlock extends HorizontalFacingBlock {
 		// However, it causes a bit of Z-fighting, which is bad!
 		//return 0.125F;
 		return 0.0625F;
-	}
-
-	@Override
-	protected boolean isRedstonePowerSource(BlockState state) {
-		return true;
-	}
-
-	@Override
-	protected int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-		return 15;
 	}
 }

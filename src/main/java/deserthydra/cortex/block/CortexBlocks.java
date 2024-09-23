@@ -31,5 +31,21 @@ public class CortexBlocks {
 		)
 	);
 
+	public static final Block LAPIS_LAZULI_FORMATION = Registry.register(
+		Registries.BLOCK,
+		CortexUtils.id("lapis_formation"),
+		new LapisFormationBlock(
+			AbstractBlock.Settings.create()
+				.mapColor(MapColor.FIRE)
+				.toolRequired()
+				.strength(5.0F, 6.0F)
+				.luminance(state -> 10)
+				.dynamicBounds()
+				.offsetType(AbstractBlock.OffsetType.XZ)
+				.sounds(BlockSoundGroup.METAL)
+				.solidBlock(Blocks::nonSolid)
+		)
+	);
+
 	public static void init() {}
 }

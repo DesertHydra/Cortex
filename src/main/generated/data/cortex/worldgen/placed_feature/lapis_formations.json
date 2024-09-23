@@ -1,5 +1,5 @@
 {
-  "feature": "cortex:redstone_formations",
+  "feature": "cortex:lapis_formations",
   "placement": [
     {
       "type": "minecraft:count",
@@ -10,10 +10,10 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 16
+          "absolute": 33
         },
         "min_inclusive": {
-          "above_bottom": -31
+          "absolute": -31
         }
       }
     },

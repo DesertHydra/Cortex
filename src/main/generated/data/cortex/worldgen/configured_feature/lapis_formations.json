@@ -1,0 +1,79 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "cortex:lapis_formation",
+                  "Properties": {
+                    "facing": "north"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "cortex:lapis_formation",
+                  "Properties": {
+                    "facing": "east"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "cortex:lapis_formation",
+                  "Properties": {
+                    "facing": "south"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "cortex:lapis_formation",
+                  "Properties": {
+                    "facing": "west"
+                  }
+                },
+                "weight": 1
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              },
+              {
+                "type": "minecraft:matching_block_tag",
+                "offset": [
+                  0,
+                  -1,
+                  0
+                ],
+                "tag": "minecraft:lapis_ores"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 196,
+    "xz_spread": 7,
+    "y_spread": 3
+  }
+}

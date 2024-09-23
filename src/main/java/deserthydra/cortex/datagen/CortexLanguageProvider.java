@@ -20,5 +20,6 @@ public class CortexLanguageProvider extends FabricLanguageProvider {
 	@Override
 	public void generateTranslations(HolderLookup.Provider lookup, TranslationBuilder builder) {
 		builder.add(CortexBlocks.REDSTONE_FORMATION, "Redstone Formation");
+		builder.add(CortexBlocks.LAPIS_LAZULI_FORMATION, "Lapis Lazuli Formation");
 	}
 }
