@@ -10,4 +10,9 @@ public class CortexConfiguredFeatures {
 		RegistryKeys.CONFIGURED_FEATURE,
 		CortexUtils.id("redstone_formations")
 	);
+
+	public static final RegistryKey<ConfiguredFeature<?, ?>> LAPIS_LAZULI_FORMATIONS = RegistryKey.of(
+		RegistryKeys.CONFIGURED_FEATURE,
+		CortexUtils.id("lapis_formations")
+	);
 }

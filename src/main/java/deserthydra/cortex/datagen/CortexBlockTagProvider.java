@@ -21,9 +21,11 @@ public class CortexBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 	@Override
 	protected void configure(HolderLookup.Provider wrapperLookup) {
 		getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
-			.add(CortexBlocks.REDSTONE_FORMATION);
+			.add(CortexBlocks.REDSTONE_FORMATION)
+			.add(CortexBlocks.LAPIS_LAZULI_FORMATION);
 
 		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-			.add(CortexBlocks.REDSTONE_FORMATION);
+			.add(CortexBlocks.REDSTONE_FORMATION)
+			.add(CortexBlocks.LAPIS_LAZULI_FORMATION);
 	}
 }

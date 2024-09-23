@@ -27,13 +27,25 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 
 	@Override
 	public void generate() {
+		var enchantmentsLookup = this.field_51845.getLookupOrThrow(RegistryKeys.ENCHANTMENT);
+
 		this.add(CortexBlocks.REDSTONE_FORMATION, this.dropsWithSilkTouch(
 			CortexBlocks.REDSTONE_FORMATION,
 			this.applyExplosionDecay(
-				CortexItems.REDSTONE_FORMATION,
+				CortexBlocks.REDSTONE_FORMATION,
 				ItemEntry.builder(Items.REDSTONE)
 					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 4.0F)))
-					.apply(ApplyBonusLootFunction.method_456(this.field_51845.getLookupOrThrow(RegistryKeys.ENCHANTMENT).getHolderOrThrow(Enchantments.FORTUNE)))
+					.apply(ApplyBonusLootFunction.method_456(enchantmentsLookup.getHolderOrThrow(Enchantments.FORTUNE)))
+			)
+		));
+
+		this.add(CortexBlocks.LAPIS_LAZULI_FORMATION, this.dropsWithSilkTouch(
+			CortexBlocks.LAPIS_LAZULI_FORMATION,
+			this.applyExplosionDecay(
+				CortexBlocks.LAPIS_LAZULI_FORMATION,
+				ItemEntry.builder(Items.LAPIS_LAZULI)
+					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 6.0F)))
+					.apply(ApplyBonusLootFunction.method_455(enchantmentsLookup.getHolderOrThrow(Enchantments.FORTUNE)))
 			)
 		));
 	}
