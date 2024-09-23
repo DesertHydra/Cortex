@@ -8,6 +8,10 @@
       {
         "model": "cortex:block/redstone_formation_1",
         "y": 90
+      },
+      {
+        "model": "cortex:block/redstone_formation_2",
+        "y": 90
       }
     ],
     "facing=north": [
@@ -16,6 +20,9 @@
       },
       {
         "model": "cortex:block/redstone_formation_1"
+      },
+      {
+        "model": "cortex:block/redstone_formation_2"
       }
     ],
     "facing=south": [
@@ -26,6 +33,10 @@
       {
         "model": "cortex:block/redstone_formation_1",
         "y": 180
+      },
+      {
+        "model": "cortex:block/redstone_formation_2",
+        "y": 180
       }
     ],
     "facing=west": [
@@ -35,6 +46,10 @@
       },
       {
         "model": "cortex:block/redstone_formation_1",
+        "y": 270
+      },
+      {
+        "model": "cortex:block/redstone_formation_2",
         "y": 270
       }
     ]

@@ -35,7 +35,10 @@ public class CortexModelProvider extends FabricModelProvider {
 							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
 						BlockStateVariant.create()
 							.put(VariantSettings.Y, VariantSettings.Rotation.R90)
-							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1"))
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1")),
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R90)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_2"))
 					))
 					.register(Direction.SOUTH, List.of(
 						BlockStateVariant.create()
@@ -43,7 +46,10 @@ public class CortexModelProvider extends FabricModelProvider {
 							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
 						BlockStateVariant.create()
 							.put(VariantSettings.Y, VariantSettings.Rotation.R180)
-							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1"))
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1")),
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R180)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_2"))
 					))
 					.register(Direction.WEST, List.of(
 						BlockStateVariant.create()
@@ -51,13 +57,15 @@ public class CortexModelProvider extends FabricModelProvider {
 							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
 						BlockStateVariant.create()
 							.put(VariantSettings.Y, VariantSettings.Rotation.R270)
-							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1"))
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1")),
+						BlockStateVariant.create()
+							.put(VariantSettings.Y, VariantSettings.Rotation.R270)
+							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_2"))
 					))
 					.register(Direction.NORTH, List.of(
-						BlockStateVariant.create()
-							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
-						BlockStateVariant.create()
-							.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1"))
+						BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_0")),
+						BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_1")),
+						BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.REDSTONE_FORMATION, "_2"))
 					))
 			)
 		);
