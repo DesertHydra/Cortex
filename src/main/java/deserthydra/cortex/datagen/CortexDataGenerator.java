@@ -28,7 +28,6 @@ import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.util.ConfiguredFeatureUtil;
 import net.minecraft.world.gen.feature.util.PlacedFeatureUtil;
-import net.minecraft.world.gen.heightprovider.TrapezoidHeightProvider;
 import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
@@ -79,12 +78,12 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 
 		DataPool.Builder<BlockState> lapisLazuliDataPool = DataPool.builder();
 		for (var direction : Direction.Type.HORIZONTAL) {
-			lapisLazuliDataPool.addWeighted(CortexBlocks.LAPIS_LAZULI_FORMATION.getDefaultState().with(Properties.HORIZONTAL_FACING, direction), 1);
+			lapisLazuliDataPool.addWeighted(CortexBlocks.LAPIS_FORMATION.getDefaultState().with(Properties.HORIZONTAL_FACING, direction), 1);
 		}
 
 		ConfiguredFeatureUtil.register(
 			context,
-			CortexConfiguredFeatures.LAPIS_LAZULI_FORMATIONS,
+			CortexConfiguredFeatures.LAPIS_FORMATIONS,
 			Feature.RANDOM_PATCH,
 			new RandomPatchFeatureConfig(
 				196,
@@ -118,8 +117,8 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 
 		PlacedFeatureUtil.register(
 			context,
-			CortexPlacedFeatures.LAPIS_LAZULI_FORMATIONS,
-			configuredFeatures.getHolderOrThrow(CortexConfiguredFeatures.LAPIS_LAZULI_FORMATIONS),
+			CortexPlacedFeatures.LAPIS_FORMATIONS,
+			configuredFeatures.getHolderOrThrow(CortexConfiguredFeatures.LAPIS_FORMATIONS),
 			CountPlacementModifier.create(128),
 			HeightRangePlacementModifier.create(UniformHeightProvider.create(YOffset.fixed(-31), YOffset.fixed(33))),
 			BiomePlacementModifier.getInstance()

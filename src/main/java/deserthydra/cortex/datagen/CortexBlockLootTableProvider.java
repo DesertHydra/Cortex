@@ -6,7 +6,6 @@
 package deserthydra.cortex.datagen;
 
 import deserthydra.cortex.block.CortexBlocks;
-import deserthydra.cortex.item.CortexItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.enchantment.Enchantments;
@@ -39,10 +38,10 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 			)
 		));
 
-		this.add(CortexBlocks.LAPIS_LAZULI_FORMATION, this.dropsWithSilkTouch(
-			CortexBlocks.LAPIS_LAZULI_FORMATION,
+		this.add(CortexBlocks.LAPIS_FORMATION, this.dropsWithSilkTouch(
+			CortexBlocks.LAPIS_FORMATION,
 			this.applyExplosionDecay(
-				CortexBlocks.LAPIS_LAZULI_FORMATION,
+				CortexBlocks.LAPIS_FORMATION,
 				ItemEntry.builder(Items.LAPIS_LAZULI)
 					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 6.0F)))
 					.apply(ApplyBonusLootFunction.method_455(enchantmentsLookup.getHolderOrThrow(Enchantments.FORTUNE)))

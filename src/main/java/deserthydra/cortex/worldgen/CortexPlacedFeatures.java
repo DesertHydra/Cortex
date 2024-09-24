@@ -11,7 +11,7 @@ public class CortexPlacedFeatures {
 		CortexUtils.id("redstone_formations")
 	);
 
-	public static final RegistryKey<PlacedFeature> LAPIS_LAZULI_FORMATIONS = RegistryKey.of(
+	public static final RegistryKey<PlacedFeature> LAPIS_FORMATIONS = RegistryKey.of(
 		RegistryKeys.PLACED_FEATURE,
 		CortexUtils.id("lapis_formations")
 	);

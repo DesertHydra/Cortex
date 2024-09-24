@@ -1,19 +1,42 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "cortex:block/lapis_formation",
-      "y": 90
-    },
-    "facing=north": {
-      "model": "cortex:block/lapis_formation"
-    },
-    "facing=south": {
-      "model": "cortex:block/lapis_formation",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "cortex:block/lapis_formation",
-      "y": 270
-    }
+    "facing=east": [
+      {
+        "model": "cortex:block/lapis_formation_0",
+        "y": 90
+      },
+      {
+        "model": "cortex:block/lapis_formation_1",
+        "y": 90
+      }
+    ],
+    "facing=north": [
+      {
+        "model": "cortex:block/lapis_formation_0"
+      },
+      {
+        "model": "cortex:block/lapis_formation_1"
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "cortex:block/lapis_formation_0",
+        "y": 180
+      },
+      {
+        "model": "cortex:block/lapis_formation_1",
+        "y": 180
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "cortex:block/lapis_formation_0",
+        "y": 270
+      },
+      {
+        "model": "cortex:block/lapis_formation_1",
+        "y": 270
+      }
+    ]
   }
 }

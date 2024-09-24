@@ -22,10 +22,10 @@ public class CortexItems {
 		new BlockItem(CortexBlocks.REDSTONE_FORMATION, new Item.Settings())
 	);
 
-	public static final Item LAPIS_LAZULI_FORMATION = Registry.register(
+	public static final Item LAPIS_FORMATION = Registry.register(
 		Registries.ITEM,
 		CortexUtils.id("lapis_formation"),
-		new BlockItem(CortexBlocks.LAPIS_LAZULI_FORMATION, new Item.Settings())
+		new BlockItem(CortexBlocks.LAPIS_FORMATION, new Item.Settings())
 	);
 
 	public static void init() {
@@ -35,7 +35,7 @@ public class CortexItems {
 	private static void registerItemGroupOrder() {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL_BLOCKS).register(entries -> {
 			entries.addAfter(Items.AMETHYST_CLUSTER, REDSTONE_FORMATION);
-			entries.addAfter(REDSTONE_FORMATION, LAPIS_LAZULI_FORMATION);
+			entries.addAfter(REDSTONE_FORMATION, LAPIS_FORMATION);
 		});
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(entries -> {
