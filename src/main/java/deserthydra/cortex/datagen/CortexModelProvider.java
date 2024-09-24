@@ -70,11 +70,47 @@ public class CortexModelProvider extends FabricModelProvider {
 			)
 		);
 
-		generator.registerNorthDefaultHorizontalRotation(CortexBlocks.LAPIS_LAZULI_FORMATION);
+		generator.blockStateCollector.accept(
+			VariantsBlockStateSupplier.create(
+					CortexBlocks.LAPIS_FORMATION
+				)
+				.coordinate(
+					BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
+						.register(Direction.EAST, List.of(
+							BlockStateVariant.create()
+								.put(VariantSettings.Y, VariantSettings.Rotation.R90)
+								.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.LAPIS_FORMATION, "_0")),
+							BlockStateVariant.create()
+								.put(VariantSettings.Y, VariantSettings.Rotation.R90)
+								.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.LAPIS_FORMATION, "_1"))
+						))
+						.register(Direction.SOUTH, List.of(
+							BlockStateVariant.create()
+								.put(VariantSettings.Y, VariantSettings.Rotation.R180)
+								.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.LAPIS_FORMATION, "_0")),
+							BlockStateVariant.create()
+								.put(VariantSettings.Y, VariantSettings.Rotation.R180)
+								.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.LAPIS_FORMATION, "_1"))
+						))
+						.register(Direction.WEST, List.of(
+							BlockStateVariant.create()
+								.put(VariantSettings.Y, VariantSettings.Rotation.R270)
+								.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.LAPIS_FORMATION, "_0")),
+							BlockStateVariant.create()
+								.put(VariantSettings.Y, VariantSettings.Rotation.R270)
+								.put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.LAPIS_FORMATION, "_1"))
+						))
+						.register(Direction.NORTH, List.of(
+							BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.LAPIS_FORMATION, "_0")),
+							BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CortexBlocks.LAPIS_FORMATION, "_1"))
+						))
+				)
+		);
 	}
 
 	@Override
 	public void generateItemModels(ItemModelGenerator generator) {
 		generator.register(CortexItems.REDSTONE_FORMATION, Models.SINGLE_LAYER_ITEM);
+		generator.register(CortexItems.LAPIS_FORMATION, Models.SINGLE_LAYER_ITEM);
 	}
 }

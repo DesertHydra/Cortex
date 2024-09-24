@@ -28,7 +28,7 @@ public class CortexMod implements ModInitializer {
 		BiomeModifications.addFeature(
 			context -> context.hasFeature(OreConfiguredFeatures.ORE_LAPIS),
 			GenerationStep.Feature.UNDERGROUND_DECORATION,
-			CortexPlacedFeatures.LAPIS_LAZULI_FORMATIONS
+			CortexPlacedFeatures.LAPIS_FORMATIONS
 		);
 	}
 }
