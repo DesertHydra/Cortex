@@ -31,7 +31,7 @@ public class CortexItems {
 	public static final Item RAW_DIAMOND = Registry.register(
 		Registries.ITEM,
 		CortexUtils.id("raw_diamond"),
-		new Item(new Item.Settings())
+		new RawDiamondItem(new Item.Settings())
 	);
 
 	public static void init() {
