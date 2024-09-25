@@ -28,7 +28,13 @@ public class CortexItems {
 		new BlockItem(CortexBlocks.LAPIS_FORMATION, new Item.Settings())
 	);
 
-	public static final Item RAW_DIAMOND = new Item(new Item.Settings());
+	public static final Item RAW_DIAMOND = Registry.register(
+		Registries.ITEM,
+		CortexUtils.id("raw_diamond"),
+		new Item(new Item.Settings())
+	);
+
+
 
 	public static void init() {
 		registerItemGroupOrder();

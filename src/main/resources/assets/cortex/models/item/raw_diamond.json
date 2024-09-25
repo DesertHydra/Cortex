@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "hardwater:item/raw_diamond"
+    "layer0": "cortex:item/raw_diamond"
   }
 }
