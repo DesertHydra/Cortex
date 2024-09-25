@@ -122,5 +122,6 @@ public class CortexModelProvider extends FabricModelProvider {
 	public void generateItemModels(ItemModelGenerator generator) {
 		generator.register(CortexItems.REDSTONE_FORMATION, Models.SINGLE_LAYER_ITEM);
 		generator.register(CortexItems.LAPIS_FORMATION, Models.SINGLE_LAYER_ITEM);
+		generator.register(CortexItems.RAW_DIAMOND, Models.SINGLE_LAYER_ITEM);
 	}
 }
