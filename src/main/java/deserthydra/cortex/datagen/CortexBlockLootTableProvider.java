@@ -6,8 +6,10 @@
 package deserthydra.cortex.datagen;
 
 import deserthydra.cortex.block.CortexBlocks;
+import deserthydra.cortex.item.CortexItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
 import net.minecraft.loot.entry.ItemEntry;
@@ -28,24 +30,28 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 	public void generate() {
 		var enchantmentsLookup = this.field_51845.getLookupOrThrow(RegistryKeys.ENCHANTMENT);
 
-		this.add(CortexBlocks.REDSTONE_FORMATION, this.dropsWithSilkTouch(
-			CortexBlocks.REDSTONE_FORMATION,
+		this.add(CortexBlocks.REDSTONE_FORMATION, block -> this.dropsWithSilkTouch(
+			block,
 			this.applyExplosionDecay(
-				CortexBlocks.REDSTONE_FORMATION,
+				block,
 				ItemEntry.builder(Items.REDSTONE)
 					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 4.0F)))
 					.apply(ApplyBonusLootFunction.method_456(enchantmentsLookup.getHolderOrThrow(Enchantments.FORTUNE)))
 			)
 		));
 
-		this.add(CortexBlocks.LAPIS_FORMATION, this.dropsWithSilkTouch(
-			CortexBlocks.LAPIS_FORMATION,
+		this.add(CortexBlocks.LAPIS_FORMATION, block -> this.dropsWithSilkTouch(
+			block,
 			this.applyExplosionDecay(
-				CortexBlocks.LAPIS_FORMATION,
+				block,
 				ItemEntry.builder(Items.LAPIS_LAZULI)
 					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 6.0F)))
 					.apply(ApplyBonusLootFunction.method_455(enchantmentsLookup.getHolderOrThrow(Enchantments.FORTUNE)))
 			)
 		));
+
+		// Make Diamond Ore drop Raw Diamond
+		this.add(Blocks.DIAMOND_ORE, block -> this.oreDrops(block, CortexItems.RAW_DIAMOND));
+		this.add(Blocks.DEEPSLATE_DIAMOND_ORE, block -> this.oreDrops(block, CortexItems.RAW_DIAMOND));
 	}
 }

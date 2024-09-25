@@ -6,6 +6,7 @@
 package deserthydra.cortex.datagen;
 
 import deserthydra.cortex.block.CortexBlocks;
+import deserthydra.cortex.item.CortexItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.HolderLookup;
@@ -21,5 +22,7 @@ public class CortexLanguageProvider extends FabricLanguageProvider {
 	public void generateTranslations(HolderLookup.Provider lookup, TranslationBuilder builder) {
 		builder.add(CortexBlocks.REDSTONE_FORMATION, "Redstone Formation");
 		builder.add(CortexBlocks.LAPIS_FORMATION, "Lapis Lazuli Formation");
+
+		builder.add(CortexItems.RAW_DIAMOND, "Raw Diamond");
 	}
 }

@@ -1,4 +1,5 @@
 {
   "block.cortex.lapis_formation": "Formação de lápis-lazúli",
-  "block.cortex.redstone_formation": "Formação de redstone"
+  "block.cortex.redstone_formation": "Formação de redstone",
+  "item.cortex.raw_diamond": "Diamante bruto"
 }
