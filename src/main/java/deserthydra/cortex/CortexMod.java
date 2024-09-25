@@ -5,13 +5,26 @@
  */
 package deserthydra.cortex;
 
+import com.google.common.reflect.Reflection;
 import deserthydra.cortex.block.CortexBlocks;
 import deserthydra.cortex.item.CortexItems;
 import deserthydra.cortex.worldgen.CortexPlacedFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.OreConfiguredFeatures;
+
+import static deserthydra.cortex.item.CortexItems.RAW_DIAMOND;
+import static net.minecraft.registry.tag.BlockTags.LEAVES;
+import static net.minecraft.registry.tag.BlockTags.SNOW;
 
 public class CortexMod implements ModInitializer {
 	@Override
@@ -30,5 +43,22 @@ public class CortexMod implements ModInitializer {
 			GenerationStep.Feature.UNDERGROUND_DECORATION,
 			CortexPlacedFeatures.LAPIS_FORMATIONS
 		);
+
+		// stone diamond
+		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+
+			if (player.getStackInHand(hand).getItem() == RAW_DIAMOND && !player.isSpectator() &&
+				world.getBlockState(hitResult.getBlockPos()).isOf(Blocks.GRINDSTONE)) {
+				player.getInventory().offerOrDrop(Items.DIAMOND.getDefaultStack());
+				player.getMainHandStack().decrement(1);
+				player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return ActionResult.SUCCESS;
+			}
+
+			return ActionResult.PASS;
+
+		});
+
+
 	}
 }
