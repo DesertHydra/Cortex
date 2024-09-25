@@ -28,6 +28,8 @@ public class CortexItems {
 		new BlockItem(CortexBlocks.LAPIS_FORMATION, new Item.Settings())
 	);
 
+	public static final Item RAW_DIAMOND = new Item(new Item.Settings());
+
 	public static void init() {
 		registerItemGroupOrder();
 	}
@@ -41,5 +43,8 @@ public class CortexItems {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(entries -> {
 			entries.addAfter(Items.REDSTONE_ORE, REDSTONE_FORMATION);
 		});
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->
+			entries.addAfter(Items.LAPIS_LAZULI, RAW_DIAMOND));
 	}
 }
