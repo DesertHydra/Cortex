@@ -1,6 +1,7 @@
 plugins {
 	id 'maven-publish'
 	alias libs.plugins.quilt.loom
+	alias libs.plugins.mod.publish.plugin
 }
 
 base {
@@ -88,4 +89,22 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+}
+
+import me.modmuss50.mpp.ReleaseType
+
+publishMods {
+	file = remapJar.archiveFile
+	changelog = providers.environmentVariable("CHANGELOG").getOrElse("# Missing Changelog, Please Stand By")
+	type = Enum.valueOf(ReleaseType, providers.environmentVariable("MODRINTH_TOKEN").getOrElse("STABLE"))
+	modLoaders.addAll("fabric", "quilt")
+
+	modrinth {
+		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+		projectId = "cortex"
+		minecraftVersions.add(libs.versions.minecraft.get())
+		requires("qsl")
+	}
+
+	// TODO - GitHub Releases maybe?
 }

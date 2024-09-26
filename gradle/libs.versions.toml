@@ -6,7 +6,9 @@ quilt_mappings = "1.21.1+build.3"
 quilt_loom = "1.7.4"
 quilt_loader = "0.26.4"
 
-fabric_api = "0.104.0+1.21.1"
+fabric_api = "0.105.0+1.21.1"
+
+mod_publish_plugin = "0.7.4"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
@@ -20,3 +22,5 @@ fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fab
 
 [plugins]
 quilt_loom = { id = "org.quiltmc.loom", version.ref = "quilt_loom" }
+# How ironic, the one who kept Quilted Fabric API alive has now succumbed to the powers of Modmussy
+mod_publish_plugin = { id = "me.modmuss50.mod-publish-plugin", version.ref = "mod_publish_plugin" }
