@@ -106,5 +106,9 @@ publishMods {
 		requires("qsl")
 	}
 
-	// TODO - GitHub Releases maybe?
+	github {
+		accessToken = providers.environmentVariable("GITHUB_TOKEN")
+		repository = "DesertHydra/Cortex"
+		commitish = providers.environmentVariable("GITHUB_REF_NAME")
+	}
 }
