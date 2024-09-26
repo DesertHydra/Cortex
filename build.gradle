@@ -1,6 +1,7 @@
 plugins {
 	id 'maven-publish'
 	alias libs.plugins.quilt.loom
+	alias libs.plugins.mod.publish.plugin
 }
 
 base {
@@ -87,5 +88,27 @@ publishing {
 		// Notice: This block does NOT have the same function as the block in the top level.
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
+	}
+}
+
+import me.modmuss50.mpp.ReleaseType
+
+publishMods {
+	file = remapJar.archiveFile
+	changelog = providers.environmentVariable("CHANGELOG").getOrElse("# Missing Changelog, Please Stand By")
+	type = Enum.valueOf(ReleaseType, providers.environmentVariable("MODRINTH_TOKEN").getOrElse("STABLE"))
+	modLoaders.addAll("fabric", "quilt")
+
+	modrinth {
+		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+		projectId = "KNee4KiW"
+		minecraftVersions.add(libs.versions.minecraft.get())
+		requires("qvIfYCYJ") // QFAPI/QSL
+	}
+
+	github {
+		accessToken = providers.environmentVariable("GITHUB_TOKEN")
+		repository = "DesertHydra/Cortex"
+		commitish = providers.environmentVariable("GITHUB_REF_NAME")
 	}
 }

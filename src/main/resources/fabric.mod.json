@@ -21,9 +21,6 @@
       "deserthydra.cortex.CortexMod"
     ]
   },
-  "mixins": [
-    "cortex.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.16.2",
     "minecraft": "~1.21.1",
