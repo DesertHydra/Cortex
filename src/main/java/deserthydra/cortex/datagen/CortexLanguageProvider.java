@@ -26,6 +26,5 @@ public class CortexLanguageProvider extends FabricLanguageProvider {
 
 		builder.add(CortexItems.RAW_DIAMOND, "Raw Diamond");
 		builder.add(CortexItems.REDSTONE, "Redstone");
-		builder.add(Items.REDSTONE, "Redstone Dust");
 	}
 }
