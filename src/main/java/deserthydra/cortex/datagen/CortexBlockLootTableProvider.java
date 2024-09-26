@@ -30,15 +30,7 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 	public void generate() {
 		var enchantmentsLookup = this.field_51845.getLookupOrThrow(RegistryKeys.ENCHANTMENT);
 
-		this.add(CortexBlocks.REDSTONE_FORMATION, block -> this.dropsWithSilkTouch(
-			block,
-			this.applyExplosionDecay(
-				block,
-				ItemEntry.builder(Items.REDSTONE)
-					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 4.0F)))
-					.apply(ApplyBonusLootFunction.method_456(enchantmentsLookup.getHolderOrThrow(Enchantments.FORTUNE)))
-			)
-		));
+		this.add(CortexBlocks.REDSTONE_FORMATION, block -> this.oreDrops(block, CortexItems.REDSTONE));
 
 		this.add(CortexBlocks.LAPIS_FORMATION, block -> this.dropsWithSilkTouch(
 			block,
@@ -53,5 +45,9 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 		// Make Diamond Ore drop Raw Diamond
 		this.add(Blocks.DIAMOND_ORE, block -> this.oreDrops(block, CortexItems.RAW_DIAMOND));
 		this.add(Blocks.DEEPSLATE_DIAMOND_ORE, block -> this.oreDrops(block, CortexItems.RAW_DIAMOND));
+
+		// Make Redstone Ore drop our Redstone
+		this.add(Blocks.REDSTONE_ORE, block -> this.oreDrops(block, CortexItems.REDSTONE));
+		this.add(Blocks.DEEPSLATE_REDSTONE_ORE, block -> this.oreDrops(block, CortexItems.REDSTONE));
 	}
 }

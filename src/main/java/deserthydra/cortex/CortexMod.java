@@ -11,16 +11,18 @@ import deserthydra.cortex.worldgen.CortexPlacedFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.dispenser.DispenserBlock;
+import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.BlockPointer;
+import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.OreConfiguredFeatures;
-
-import static deserthydra.cortex.item.CortexItems.RAW_DIAMOND;
 
 public class CortexMod implements ModInitializer {
 	@Override
@@ -42,18 +44,67 @@ public class CortexMod implements ModInitializer {
 
 		// stone diamond
 		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-			if (player.getStackInHand(hand).getItem() == RAW_DIAMOND && !player.isSpectator() &&
+			var stack = player.getStackInHand(hand);
+			if (stack.isOf(CortexItems.RAW_DIAMOND) && !player.isSpectator() &&
 				world.getBlockState(hitResult.getBlockPos()).isOf(Blocks.GRINDSTONE)) {
-				player.getInventory().offerOrDrop(Items.DIAMOND.getDefaultStack());
+				player.getInventory().offerOrDrop(new ItemStack(Items.DIAMOND));
 				// This wouldn't be needed if we were adding behavior directly to a grindstone
 				if (!player.getAbilities().creativeMode) {
-					player.getStackInHand(hand).decrement(1);
+					stack.decrement(1);
 				}
 				player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				return ActionResult.SUCCESS;
 			}
 
 			return ActionResult.PASS;
+		});
+
+		// red
+		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+			var stack = player.getStackInHand(hand);
+			if (stack.isOf(CortexItems.REDSTONE) && !player.isSpectator() &&
+				world.getBlockState(hitResult.getBlockPos()).isOf(Blocks.GRINDSTONE)) {
+				player.getInventory().offerOrDrop(new ItemStack(Items.REDSTONE, 4));
+				// This wouldn't be needed if we were adding behavior directly to a grindstone
+				if (!player.getAbilities().creativeMode) {
+					stack.decrement(1);
+				}
+				player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return ActionResult.SUCCESS;
+			}
+
+			return ActionResult.PASS;
+		});
+
+		// dispenser
+		DispenserBlock.registerBehavior(CortexItems.RAW_DIAMOND, new FallibleItemDispenserBehavior() {
+			@Override
+			protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+				var world = pointer.world();
+				var blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
+				if (world.getBlockState(blockPos).getBlock() == Blocks.GRINDSTONE) {
+					this.setSuccess(true);
+					world.emitGameEvent(null, GameEvent.ITEM_INTERACT_FINISH, pointer.pos());
+					return this.consumeWithRemainder(pointer, stack, new ItemStack(Items.DIAMOND));
+				} else {
+					return super.dispenseSilently(pointer, stack);
+				}
+			}
+		});
+
+		DispenserBlock.registerBehavior(CortexItems.REDSTONE, new FallibleItemDispenserBehavior() {
+			@Override
+			protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+				var world = pointer.world();
+				var blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
+				if (world.getBlockState(blockPos).getBlock() == Blocks.GRINDSTONE) {
+					this.setSuccess(true);
+					world.emitGameEvent(null, GameEvent.ITEM_INTERACT_FINISH, pointer.pos());
+					return this.consumeWithRemainder(pointer, stack, new ItemStack(Items.REDSTONE, 4));
+				} else {
+					return super.dispenseSilently(pointer, stack);
+				}
+			}
 		});
 	}
 }
