@@ -8,33 +8,50 @@ package deserthydra.cortex.item;
 import deserthydra.cortex.CortexUtils;
 import deserthydra.cortex.block.CortexBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CortexItems {
-	public static final Item REDSTONE_FORMATION = Registry.register(
-		Registries.ITEM,
-		CortexUtils.id("redstone_formation"),
+	public static final Map<Identifier, Item> ITEMS_TO_REGISTER = new HashMap<>();
+
+	/**
+	 * Registers an item using a Cortex id.
+	 */
+	public static Item item(String path, Item item) {
+		ITEMS_TO_REGISTER.put(CortexUtils.id(path), item);
+		return item;
+	}
+
+	public static final Item REDSTONE_FORMATION = item(
+		"redstone_formation",
 		new BlockItem(CortexBlocks.REDSTONE_FORMATION, new Item.Settings())
 	);
 
-	public static final Item LAPIS_FORMATION = Registry.register(
-		Registries.ITEM,
-		CortexUtils.id("lapis_formation"),
+	public static final Item LAPIS_FORMATION = item(
+		"lapis_formation",
 		new BlockItem(CortexBlocks.LAPIS_FORMATION, new Item.Settings())
 	);
 
-	public static final Item RAW_DIAMOND = Registry.register(
-		Registries.ITEM,
-		CortexUtils.id("raw_diamond"),
-		new RawDiamondItem(new Item.Settings())
+	public static final Item RAW_DIAMOND = item(
+		"raw_diamond",
+		new Item(new Item.Settings())
+	);
+
+	public static final Item REDSTONE = item(
+		"redstone",
+		new Item(new Item.Settings())
 	);
 
 	public static void init() {
+		for (var entry : ITEMS_TO_REGISTER.entrySet()) {
+			Registry.register(Registries.ITEM, entry.getKey(), entry.getValue());
+		}
+
 		registerItemGroupOrder();
 	}
 

@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "cortex:redstone_formation"
+              "name": "minecraft:redstone_ore"
             },
             {
               "type": "minecraft:item",
