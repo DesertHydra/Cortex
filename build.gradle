@@ -101,9 +101,9 @@ publishMods {
 
 	modrinth {
 		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-		projectId = "cortex"
+		projectId = "KNee4KiW"
 		minecraftVersions.add(libs.versions.minecraft.get())
-		requires("qsl")
+		requires("qvIfYCYJ") // QFAPI/QSL
 	}
 
 	github {
