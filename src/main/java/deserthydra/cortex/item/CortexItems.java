@@ -61,11 +61,14 @@ public class CortexItems {
 			entries.addAfter(REDSTONE_FORMATION, LAPIS_FORMATION);
 		});
 
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(entries ->
-			entries.addAfter(Items.REDSTONE_ORE, REDSTONE_FORMATION));
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(entries -> {
+			entries.addAfter(Items.REDSTONE, REDSTONE);
+			entries.addAfter(Items.REDSTONE_BLOCK, REDSTONE_FORMATION);
+		});
 
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->
-			// This used to be Lapis Lazuli -> Raw Diamond, but maybe Raw Gold -> Raw Diamond makes more sense?
-			entries.addAfter(Items.RAW_GOLD, RAW_DIAMOND));
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
+			entries.addAfter(Items.RAW_GOLD, RAW_DIAMOND);
+			entries.addAfter(Items.LAPIS_LAZULI, REDSTONE);
+		});
 	}
 }
