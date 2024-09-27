@@ -39,6 +39,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(CortexBlockTagProvider::new);
 		pack.addProvider(CortexLanguageProvider::new);
 		pack.addProvider(CortexModelProvider::new);
+		pack.addProvider(CortexRecipeProvider::new);
 		pack.addProvider(CortexWorldGenProvider::new);
 	}
 
