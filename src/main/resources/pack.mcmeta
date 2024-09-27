@@ -1,0 +1,14 @@
+{
+  "pack": {
+    "pack_format": 48,
+    "description": "Please don't tell me you're seeing this."
+  },
+  "filter": {
+    "block": [
+      {
+        "namespace": "minecraft",
+        "path": "redstone_from_.*redstone_ore"
+      }
+    ]
+  }
+}
