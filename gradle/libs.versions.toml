@@ -22,5 +22,3 @@ fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fab
 
 [plugins]
 quilt_loom = { id = "org.quiltmc.loom", version.ref = "quilt_loom" }
-# How ironic, the one who kept Quilted Fabric API alive has now succumbed to the powers of Modmussy
-mod_publish_plugin = { id = "me.modmuss50.mod-publish-plugin", version.ref = "mod_publish_plugin" }
