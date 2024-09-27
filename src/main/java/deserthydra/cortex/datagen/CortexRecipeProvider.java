@@ -1,24 +1,24 @@
 package deserthydra.cortex.datagen;
 
-import deserthydra.cortex.CortexUtils;
 import deserthydra.cortex.item.CortexItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.RecipesProvider;
-import net.minecraft.data.server.recipe.CookingRecipeJsonFactory;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeCategory;
-import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.registry.HolderLookup;
 import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
+// Since we are using RecipesProvider instead of FabricRecipeProvider,
+// The id will be "defaults to minecraft, but can be set to a mod id" instead of "always your mod id".
+// Be aware!
 public class CortexRecipeProvider extends RecipesProvider {
 	public CortexRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);

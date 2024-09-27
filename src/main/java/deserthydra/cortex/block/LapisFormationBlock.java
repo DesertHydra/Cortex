@@ -17,7 +17,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
-// TODO - Unify this with redstone
 public class LapisFormationBlock extends HorizontalFacingBlock {
 	public static final MapCodec<LapisFormationBlock> CODEC = createCodec(LapisFormationBlock::new);
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 13.0, 14.0);
