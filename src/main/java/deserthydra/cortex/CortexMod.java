@@ -42,12 +42,29 @@ public class CortexMod implements ModInitializer {
 			CortexPlacedFeatures.LAPIS_FORMATIONS
 		);
 
-		// stone diamond
+		// raw diamond
 		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
 			var stack = player.getStackInHand(hand);
 			if (stack.isOf(CortexItems.RAW_DIAMOND) && !player.isSpectator() &&
 				world.getBlockState(hitResult.getBlockPos()).isOf(Blocks.GRINDSTONE)) {
 				player.getInventory().offerOrDrop(new ItemStack(Items.DIAMOND));
+				// This wouldn't be needed if we were adding behavior directly to a grindstone
+				if (!player.getAbilities().creativeMode) {
+					stack.decrement(1);
+				}
+				player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return ActionResult.SUCCESS;
+			}
+
+			return ActionResult.PASS;
+		});
+
+		// raw emerald
+		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+			var stack = player.getStackInHand(hand);
+			if (stack.isOf(CortexItems.RAW_EMERALD) && !player.isSpectator() &&
+				world.getBlockState(hitResult.getBlockPos()).isOf(Blocks.GRINDSTONE)) {
+				player.getInventory().offerOrDrop(new ItemStack(Items.EMERALD));
 				// This wouldn't be needed if we were adding behavior directly to a grindstone
 				if (!player.getAbilities().creativeMode) {
 					stack.decrement(1);
@@ -86,6 +103,21 @@ public class CortexMod implements ModInitializer {
 					this.setSuccess(true);
 					world.emitGameEvent(null, GameEvent.ITEM_INTERACT_FINISH, pointer.pos());
 					return this.consumeWithRemainder(pointer, stack, new ItemStack(Items.DIAMOND));
+				} else {
+					return super.dispenseSilently(pointer, stack);
+				}
+			}
+		});
+
+		DispenserBlock.registerBehavior(CortexItems.RAW_EMERALD, new FallibleItemDispenserBehavior() {
+			@Override
+			protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+				var world = pointer.world();
+				var blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
+				if (world.getBlockState(blockPos).getBlock() == Blocks.GRINDSTONE) {
+					this.setSuccess(true);
+					world.emitGameEvent(null, GameEvent.ITEM_INTERACT_FINISH, pointer.pos());
+					return this.consumeWithRemainder(pointer, stack, new ItemStack(Items.EMERALD));
 				} else {
 					return super.dispenseSilently(pointer, stack);
 				}

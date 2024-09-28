@@ -46,6 +46,11 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 		this.add(Blocks.DIAMOND_ORE, block -> this.oreDrops(block, CortexItems.RAW_DIAMOND));
 		this.add(Blocks.DEEPSLATE_DIAMOND_ORE, block -> this.oreDrops(block, CortexItems.RAW_DIAMOND));
 
+		// Make Diamond Ore drop Raw Diamond
+		this.add(Blocks.EMERALD_ORE, block -> this.oreDrops(block, CortexItems.RAW_EMERALD));
+		this.add(Blocks.DEEPSLATE_EMERALD_ORE, block -> this.oreDrops(block, CortexItems.RAW_EMERALD));
+
+
 		// Make Redstone Ore drop our Redstone
 		this.add(Blocks.REDSTONE_ORE, block -> this.oreDrops(block, CortexItems.REDSTONE));
 		this.add(Blocks.DEEPSLATE_REDSTONE_ORE, block -> this.oreDrops(block, CortexItems.REDSTONE));
