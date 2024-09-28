@@ -1,6 +1,7 @@
 {
   "block.cortex.lapis_formation": "Lapis Lazuli Formation",
   "block.cortex.redstone_formation": "Redstone Formation",
+  "block.cortex.suspicious_netherrack": "Suspicious Netherrack",
   "item.cortex.raw_diamond": "Raw Diamond",
   "item.cortex.raw_emerald": "Raw Emerald",
   "item.cortex.redstone": "Redstone"

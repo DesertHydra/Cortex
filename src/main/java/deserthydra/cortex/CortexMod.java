@@ -10,6 +10,7 @@ import deserthydra.cortex.item.CortexItems;
 import deserthydra.cortex.worldgen.CortexPlacedFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.dispenser.DispenserBlock;
@@ -23,6 +24,9 @@ import net.minecraft.util.math.BlockPointer;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.OreConfiguredFeatures;
+import net.minecraft.world.gen.feature.OrePlacedFeatures;
+import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.structure.BuiltInStructures;
 
 public class CortexMod implements ModInitializer {
 	@Override
@@ -40,6 +44,18 @@ public class CortexMod implements ModInitializer {
 			context -> context.hasFeature(OreConfiguredFeatures.ORE_LAPIS),
 			GenerationStep.Feature.UNDERGROUND_DECORATION,
 			CortexPlacedFeatures.LAPIS_FORMATIONS
+		);
+
+		BiomeModifications.create(CortexUtils.id("remove_large_ancient_debris")).add(
+			ModificationPhase.REMOVALS,
+			selectionContext -> selectionContext.hasPlacedFeature(OrePlacedFeatures.ORE_ANCIENT_DEBRIS_LARGE),
+			modificationContext -> modificationContext.getGenerationSettings().removeFeature(OrePlacedFeatures.ORE_ANCIENT_DEBRIS_LARGE)
+		);
+
+		BiomeModifications.create(CortexUtils.id("remove_small_ancient_debris")).add(
+			ModificationPhase.REMOVALS,
+			selectionContext -> selectionContext.hasPlacedFeature(OrePlacedFeatures.ORE_DEBRIS_SMALL),
+			modificationContext -> modificationContext.getGenerationSettings().removeFeature(OrePlacedFeatures.ORE_DEBRIS_SMALL)
 		);
 
 		// raw diamond

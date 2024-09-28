@@ -4,7 +4,9 @@
   "package": "deserthydra.cortex.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BrewingRecipeRegistryMixin"
+    "BrewingRecipeRegistryMixin",
+    "NetherFossilGeneratorPieceMixin",
+    "RuinedPortalStructurePieceMixin"
   ],
   "injectors": {
     "defaultRequire": 1
