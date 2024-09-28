@@ -3,7 +3,9 @@
   "minVersion": "0.8",
   "package": "deserthydra.cortex.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "BrewingRecipeRegistryMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
