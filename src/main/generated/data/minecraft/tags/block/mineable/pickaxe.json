@@ -1,6 +1,7 @@
 {
   "values": [
     "cortex:redstone_formation",
-    "cortex:lapis_formation"
+    "cortex:lapis_formation",
+    "cortex:suspicious_netherrack"
   ]
 }

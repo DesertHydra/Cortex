@@ -66,5 +66,8 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 		// Make Lapis Ores drop 1 (one) Lapis
 		this.add(Blocks.LAPIS_ORE, block -> this.oreDrops(block, Items.LAPIS_LAZULI));
 		this.add(Blocks.DEEPSLATE_LAPIS_ORE, block -> this.oreDrops(block, Items.LAPIS_LAZULI));
+
+		// Make Suspicious Netherrack drop nothing
+		this.add(CortexBlocks.SUSPICIOUS_NETHERRACK, dropsNothing());
 	}
 }

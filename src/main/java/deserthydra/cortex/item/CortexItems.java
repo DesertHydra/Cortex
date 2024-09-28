@@ -37,6 +37,11 @@ public class CortexItems {
 		new BlockItem(CortexBlocks.LAPIS_FORMATION, new Item.Settings())
 	);
 
+	public static final Item SUSPICIOUS_NETHERRACK = item(
+		"suspicious_netherrack",
+		new BlockItem(CortexBlocks.SUSPICIOUS_NETHERRACK, new Item.Settings())
+	);
+
 	public static final Item RAW_DIAMOND = item(
 		"raw_diamond",
 		new Item(new Item.Settings())
@@ -64,6 +69,10 @@ public class CortexItems {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL_BLOCKS).register(entries -> {
 			entries.addAfter(Items.AMETHYST_CLUSTER, REDSTONE_FORMATION);
 			entries.addAfter(REDSTONE_FORMATION, LAPIS_FORMATION);
+		});
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL_BLOCKS).register(entries -> {
+			entries.addAfter(Items.SUSPICIOUS_GRAVEL, SUSPICIOUS_NETHERRACK);
 		});
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(entries -> {

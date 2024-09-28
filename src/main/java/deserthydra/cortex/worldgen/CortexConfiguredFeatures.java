@@ -4,6 +4,7 @@ import deserthydra.cortex.CortexUtils;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.PlacedFeature;
 
 public class CortexConfiguredFeatures {
 	public static final RegistryKey<ConfiguredFeature<?, ?>> REDSTONE_FORMATIONS = RegistryKey.of(

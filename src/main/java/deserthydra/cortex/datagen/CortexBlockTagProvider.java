@@ -26,6 +26,10 @@ public class CortexBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
 		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
 			.add(CortexBlocks.REDSTONE_FORMATION)
-			.add(CortexBlocks.LAPIS_FORMATION);
+			.add(CortexBlocks.LAPIS_FORMATION)
+			.add(CortexBlocks.SUSPICIOUS_NETHERRACK);
+
+		getOrCreateTagBuilder(BlockTags.INFINIBURN_NETHER)
+			.add(CortexBlocks.SUSPICIOUS_NETHERRACK);
 	}
 }

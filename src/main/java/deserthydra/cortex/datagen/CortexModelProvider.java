@@ -116,6 +116,62 @@ public class CortexModelProvider extends FabricModelProvider {
 						))
 				)
 		);
+
+		// Warning: Netherrack datagen *sucks*
+		// Let's try the simple version of this
+		generator.registerSimpleCubeAll(CortexBlocks.SUSPICIOUS_NETHERRACK);
+		/*
+		var suspiciousNetherrackModelId = TexturedModel.CUBE_ALL.create(CortexBlocks.SUSPICIOUS_NETHERRACK, generator.modelCollector);
+		generator.blockStateCollector
+			.accept(
+				VariantsBlockStateSupplier.create(
+					CortexBlocks.SUSPICIOUS_NETHERRACK,
+					BlockStateVariant.create().put(VariantSettings.MODEL, suspiciousNetherrackModelId),
+					BlockStateVariant.create().put(VariantSettings.MODEL, suspiciousNetherrackModelId).put(VariantSettings.X, VariantSettings.Rotation.R90),
+					BlockStateVariant.create().put(VariantSettings.MODEL, suspiciousNetherrackModelId).put(VariantSettings.X, VariantSettings.Rotation.R180),
+					BlockStateVariant.create().put(VariantSettings.MODEL, suspiciousNetherrackModelId).put(VariantSettings.X, VariantSettings.Rotation.R270),
+					BlockStateVariant.create().put(VariantSettings.MODEL, suspiciousNetherrackModelId).put(VariantSettings.Y, VariantSettings.Rotation.R90),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R90)
+						.put(VariantSettings.X, VariantSettings.Rotation.R90),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R90)
+						.put(VariantSettings.X, VariantSettings.Rotation.R180),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R90)
+						.put(VariantSettings.X, VariantSettings.Rotation.R270),
+					BlockStateVariant.create().put(VariantSettings.MODEL, suspiciousNetherrackModelId).put(VariantSettings.Y, VariantSettings.Rotation.R180),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R180)
+						.put(VariantSettings.X, VariantSettings.Rotation.R90),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R180)
+						.put(VariantSettings.X, VariantSettings.Rotation.R180),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R180)
+						.put(VariantSettings.X, VariantSettings.Rotation.R270),
+					BlockStateVariant.create().put(VariantSettings.MODEL, suspiciousNetherrackModelId).put(VariantSettings.Y, VariantSettings.Rotation.R270),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R270)
+						.put(VariantSettings.X, VariantSettings.Rotation.R90),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R270)
+						.put(VariantSettings.X, VariantSettings.Rotation.R180),
+					BlockStateVariant.create()
+						.put(VariantSettings.MODEL, suspiciousNetherrackModelId)
+						.put(VariantSettings.Y, VariantSettings.Rotation.R270)
+						.put(VariantSettings.X, VariantSettings.Rotation.R270)
+				)
+			);
+		 */
 	}
 
 	@Override

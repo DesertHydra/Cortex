@@ -6,13 +6,13 @@
 package deserthydra.cortex.block;
 
 import deserthydra.cortex.CortexUtils;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.MapColor;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvents;
 
 public class CortexBlocks {
 	public static final Block REDSTONE_FORMATION = Registry.register(
@@ -47,5 +47,23 @@ public class CortexBlocks {
 		)
 	);
 
-	public static void init() {}
+	public static final Block SUSPICIOUS_NETHERRACK = Registry.register(
+		Registries.BLOCK,
+		CortexUtils.id("suspicious_netherrack"),
+		new SolidBrushableBlock(
+			Blocks.NETHERRACK,
+			SoundEvents.ITEM_BRUSH_BRUSHING_GRAVEL,
+			SoundEvents.ITEM_BRUSH_BRUSHING_GRAVEL_COMPLETE,
+			AbstractBlock.Settings.create()
+				.mapColor(MapColor.NETHER)
+				.instrument(NoteBlockInstrument.BASEDRUM)
+				.toolRequired()
+				.strength(0.4F)
+				.sounds(BlockSoundGroup.NETHERRACK)
+		)
+	);
+
+	public static void init() {
+		BlockEntityType.BRUSHABLE_BLOCK.addSupportedBlock(SUSPICIOUS_NETHERRACK);
+	}
 }

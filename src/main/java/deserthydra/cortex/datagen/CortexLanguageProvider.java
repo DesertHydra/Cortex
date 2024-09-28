@@ -23,6 +23,7 @@ public class CortexLanguageProvider extends FabricLanguageProvider {
 	public void generateTranslations(HolderLookup.Provider lookup, TranslationBuilder builder) {
 		builder.add(CortexBlocks.REDSTONE_FORMATION, "Redstone Formation");
 		builder.add(CortexBlocks.LAPIS_FORMATION, "Lapis Lazuli Formation");
+		builder.add(CortexBlocks.SUSPICIOUS_NETHERRACK, "Suspicious Netherrack");
 
 		builder.add(CortexItems.RAW_DIAMOND, "Raw Diamond");
 		builder.add(CortexItems.RAW_EMERALD, "Raw Emerald");
