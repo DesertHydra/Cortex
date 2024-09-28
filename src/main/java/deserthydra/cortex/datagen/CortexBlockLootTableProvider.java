@@ -15,6 +15,7 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.HolderLookup;
 import net.minecraft.registry.RegistryKeys;
@@ -30,29 +31,40 @@ public class CortexBlockLootTableProvider extends FabricBlockLootTableProvider {
 	public void generate() {
 		var enchantmentsLookup = this.field_51845.getLookupOrThrow(RegistryKeys.ENCHANTMENT);
 
-		this.add(CortexBlocks.REDSTONE_FORMATION, block -> this.oreDrops(block, CortexItems.REDSTONE));
+		this.add(CortexBlocks.REDSTONE_FORMATION, block -> this.dropsWithSilkTouch(
+			block,
+			this.applyExplosionDecay(
+				block,
+				ItemEntry.builder(CortexItems.REDSTONE)
+					.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F)))
+					.apply(ApplyBonusLootFunction.method_455(enchantmentsLookup.getHolderOrThrow(Enchantments.FORTUNE)))
+			)
+		));
 
 		this.add(CortexBlocks.LAPIS_FORMATION, block -> this.dropsWithSilkTouch(
 			block,
 			this.applyExplosionDecay(
 				block,
 				ItemEntry.builder(Items.LAPIS_LAZULI)
-					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 6.0F)))
+					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 3.0F)))
 					.apply(ApplyBonusLootFunction.method_455(enchantmentsLookup.getHolderOrThrow(Enchantments.FORTUNE)))
 			)
 		));
 
-		// Make Diamond Ore drop Raw Diamond
+		// Make Diamond Ores drop Raw Diamond
 		this.add(Blocks.DIAMOND_ORE, block -> this.oreDrops(block, CortexItems.RAW_DIAMOND));
 		this.add(Blocks.DEEPSLATE_DIAMOND_ORE, block -> this.oreDrops(block, CortexItems.RAW_DIAMOND));
 
-		// Make Diamond Ore drop Raw Diamond
+		// Make Emerald Ores drop Raw Emerald
 		this.add(Blocks.EMERALD_ORE, block -> this.oreDrops(block, CortexItems.RAW_EMERALD));
 		this.add(Blocks.DEEPSLATE_EMERALD_ORE, block -> this.oreDrops(block, CortexItems.RAW_EMERALD));
 
-
-		// Make Redstone Ore drop our Redstone
+		// Make Redstone Ores drop our Redstone
 		this.add(Blocks.REDSTONE_ORE, block -> this.oreDrops(block, CortexItems.REDSTONE));
 		this.add(Blocks.DEEPSLATE_REDSTONE_ORE, block -> this.oreDrops(block, CortexItems.REDSTONE));
+
+		// Make Lapis Ores drop 1 (one) Lapis
+		this.add(Blocks.LAPIS_ORE, block -> this.oreDrops(block, Items.LAPIS_LAZULI));
+		this.add(Blocks.DEEPSLATE_LAPIS_ORE, block -> this.oreDrops(block, Items.LAPIS_LAZULI));
 	}
 }
