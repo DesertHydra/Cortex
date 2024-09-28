@@ -25,6 +25,7 @@ public class CortexLanguageProvider extends FabricLanguageProvider {
 		builder.add(CortexBlocks.LAPIS_FORMATION, "Lapis Lazuli Formation");
 
 		builder.add(CortexItems.RAW_DIAMOND, "Raw Diamond");
+		builder.add(CortexItems.RAW_EMERALD, "Raw Emerald");
 		builder.add(CortexItems.REDSTONE, "Redstone");
 	}
 }

@@ -42,6 +42,11 @@ public class CortexItems {
 		new Item(new Item.Settings())
 	);
 
+	public static final Item RAW_EMERALD = item(
+		"raw_emerald",
+		new Item(new Item.Settings())
+	);
+
 	public static final Item REDSTONE = item(
 		"redstone",
 		new Item(new Item.Settings())
@@ -67,7 +72,7 @@ public class CortexItems {
 		});
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-			entries.addAfter(Items.RAW_GOLD, RAW_DIAMOND);
+			entries.addAfter(Items.RAW_GOLD, RAW_DIAMOND, RAW_EMERALD);
 			entries.addAfter(Items.LAPIS_LAZULI, REDSTONE);
 		});
 	}
