@@ -3,7 +3,7 @@
   "id": "cortex",
   "version": "${version}",
   "name": "Cortex",
-  "description": "Give me back my crystals!!!",
+  "description": "Small redesigns to various ores.",
   "authors": [
     "Ennui Langeweile",
     "Isan AWrathfulVoid"
