@@ -1,5 +1,6 @@
 package deserthydra.cortex.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReceiver;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.Share;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -27,6 +29,14 @@ public abstract class WardenModelMixin<T extends WardenEntity> {
 	@Final
 	@Mutable
 	protected ModelPart rightTendril;
+
+	@Shadow
+	@Final
+	protected ModelPart leftArm;
+
+	@Shadow
+	@Final
+	protected ModelPart rightArm;
 
 	@Inject(method = "animateTendrils", at = @At("HEAD"))
 	private void storeTendrilPitch(T wardenEntity, float animationProgress, float delta, CallbackInfo ci, @Share("left") LocalFloatRef leftPitch, @Share("right") LocalFloatRef rightPitch) {
@@ -86,5 +96,36 @@ public abstract class WardenModelMixin<T extends WardenEntity> {
 			ModelTransform.NONE
 		);
 		return instance;
+	}
+
+	// Risky but worth it shenanigans
+	@ModifyExpressionValue(method = "resetArmPose", at = @At(value = "CONSTANT", args = "floatValue=1.0F", ordinal = 0))
+	private float modifyPivotZL(float original) {
+		return this.leftArm.pivotZ;
+	}
+
+	@ModifyExpressionValue(method = "resetArmPose", at = @At(value = "CONSTANT", args = "floatValue=13.0F", ordinal = 0))
+	private float modifyPivotXL(float original) {
+		return this.leftArm.pivotX;
+	}
+
+	@ModifyExpressionValue(method = "resetArmPose", at = @At(value = "CONSTANT", args = "floatValue=-13.0F", ordinal = 0))
+	private float modifyPivotYL(float original) {
+		return this.leftArm.pivotY;
+	}
+
+	@ModifyExpressionValue(method = "resetArmPose", at = @At(value = "CONSTANT", args = "floatValue=1.0F", ordinal = 1))
+	private float modifyPivotZR(float original) {
+		return this.rightArm.pivotZ;
+	}
+
+	@ModifyExpressionValue(method = "resetArmPose", at = @At(value = "CONSTANT", args = "floatValue=-13.0F", ordinal = 1))
+	private float modifyPivotXR(float original) {
+		return this.rightArm.pivotX;
+	}
+
+	@ModifyExpressionValue(method = "resetArmPose", at = @At(value = "CONSTANT", args = "floatValue=-13.0F", ordinal = 2))
+	private float modifyPivotYR(float original) {
+		return this.rightArm.pivotY;
 	}
 }
