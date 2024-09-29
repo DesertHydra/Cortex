@@ -67,6 +67,11 @@ public class CortexItems {
 		new Item(new Item.Settings())
 	);
 
+	public static final Item ANCIENT_DEBRIS = item(
+		"ancient_debris",
+		new Item(new Item.Settings().fireproof())
+	);
+
 	public static void init() {
 		for (var entry : ITEMS_TO_REGISTER.entrySet()) {
 			Registry.register(Registries.ITEM, entry.getKey(), entry.getValue());

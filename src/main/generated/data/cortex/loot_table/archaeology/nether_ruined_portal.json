@@ -11,7 +11,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:ancient_debris"
+          "name": "cortex:ancient_debris"
         }
       ],
       "rolls": 1.0

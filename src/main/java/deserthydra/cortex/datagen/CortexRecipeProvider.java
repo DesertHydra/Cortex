@@ -30,6 +30,8 @@ public class CortexRecipeProvider extends RecipesProvider {
 		// 4 Redstone to Redstone Block
 		FabricRecipeProvider.offerTwoByTwoCompactingRecipe(exporter, RecipeCategory.REDSTONE, Blocks.REDSTONE_BLOCK, CortexItems.REDSTONE);
 
+		FabricRecipeProvider.offerThreeByThreeCompactingRecipe(exporter, RecipeCategory.MISC, CortexItems.ANCIENT_DEBRIS, Items.NETHERITE_SCRAP);
+
 		// 4 Redstone Dust to Redstone
 		ShapedRecipeJsonFactory.create(RecipeCategory.REDSTONE, CortexItems.REDSTONE, 1)
 			.ingredient('#', Items.REDSTONE)

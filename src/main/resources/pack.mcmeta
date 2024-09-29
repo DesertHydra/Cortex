@@ -8,6 +8,10 @@
       {
         "namespace": "minecraft",
         "path": "redstone_from_.*redstone_ore"
+      },
+      {
+        "namespace": "minecraft",
+        "path": "recipe.*netherite(?!_block)"
       }
     ]
   }
