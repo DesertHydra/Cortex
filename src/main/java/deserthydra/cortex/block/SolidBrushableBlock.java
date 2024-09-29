@@ -3,6 +3,7 @@ package deserthydra.cortex.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BrushableBlock;
+import net.minecraft.block.BubbleColumnBlock;
 import net.minecraft.block.entity.BrushableBlockEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -13,20 +14,18 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 public class SolidBrushableBlock extends BrushableBlock {
-	public static final int TICK_DELAY = 4;
-
 	public SolidBrushableBlock(Block block, SoundEvent brushingSound, SoundEvent brushingCompleteSound, Settings settings) {
 		super(block, brushingSound, brushingCompleteSound, settings);
 	}
 
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		world.scheduleBlockTick(pos, this, TICK_DELAY);
+		world.scheduleBlockTick(pos, this, 2);
 	}
 
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		world.scheduleBlockTick(pos, this, TICK_DELAY);
+		world.scheduleBlockTick(pos, this, 2);
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
 

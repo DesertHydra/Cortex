@@ -24,6 +24,10 @@ public class CortexBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 			.add(CortexBlocks.REDSTONE_FORMATION)
 			.add(CortexBlocks.LAPIS_FORMATION);
 
+		getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
+			.add(CortexBlocks.SUSPICIOUS_SOUL_SAND)
+			.add(CortexBlocks.SUSPICIOUS_SOUL_SOIL);
+
 		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
 			.add(CortexBlocks.REDSTONE_FORMATION)
 			.add(CortexBlocks.LAPIS_FORMATION)
@@ -31,5 +35,9 @@ public class CortexBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
 		getOrCreateTagBuilder(BlockTags.INFINIBURN_NETHER)
 			.add(CortexBlocks.SUSPICIOUS_NETHERRACK);
+
+		getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS)
+			.add(CortexBlocks.SUSPICIOUS_SOUL_SAND)
+			.add(CortexBlocks.SUSPICIOUS_SOUL_SOIL);
 	}
 }

@@ -42,6 +42,16 @@ public class CortexItems {
 		new BlockItem(CortexBlocks.SUSPICIOUS_NETHERRACK, new Item.Settings())
 	);
 
+	public static final Item SUSPICIOUS_SOUL_SAND = item(
+		"suspicious_soul_sand",
+		new BlockItem(CortexBlocks.SUSPICIOUS_SOUL_SAND, new Item.Settings())
+	);
+
+	public static final Item SUSPICIOUS_SOUL_SOIL = item(
+		"suspicious_soul_soil",
+		new BlockItem(CortexBlocks.SUSPICIOUS_SOUL_SOIL, new Item.Settings())
+	);
+
 	public static final Item RAW_DIAMOND = item(
 		"raw_diamond",
 		new Item(new Item.Settings())
@@ -73,6 +83,8 @@ public class CortexItems {
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL_BLOCKS).register(entries -> {
 			entries.addAfter(Items.SUSPICIOUS_GRAVEL, SUSPICIOUS_NETHERRACK);
+			entries.addAfter(SUSPICIOUS_NETHERRACK, SUSPICIOUS_SOUL_SAND);
+			entries.addAfter(SUSPICIOUS_SOUL_SAND, SUSPICIOUS_SOUL_SOIL);
 		});
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(entries -> {

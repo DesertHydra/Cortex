@@ -63,7 +63,43 @@ public class CortexBlocks {
 		)
 	);
 
+	public static final Block SUSPICIOUS_SOUL_SAND = Registry.register(
+		Registries.BLOCK,
+		CortexUtils.id("suspicious_soul_sand"),
+		new SuspiciousSoulSandBlock(
+			Blocks.SOUL_SAND,
+			SoundEvents.ITEM_BRUSH_BRUSHING_SAND,
+			SoundEvents.ITEM_BRUSH_BRUSHING_SAND_COMPLETE,
+			AbstractBlock.Settings.create()
+				.mapColor(MapColor.BROWN)
+				.instrument(NoteBlockInstrument.COW_BELL)
+				.strength(0.5F)
+				.sounds(BlockSoundGroup.SOUL_SAND)
+				.velocityMultiplier(0.4F)
+				.solidBlock(Blocks::solid)
+				.blockVision(Blocks::solid)
+				.suffocates(Blocks::solid)
+		)
+	);
+
+	public static final Block SUSPICIOUS_SOUL_SOIL = Registry.register(
+		Registries.BLOCK,
+		CortexUtils.id("suspicious_soul_soil"),
+		new SolidBrushableBlock(
+			Blocks.SOUL_SOIL,
+			SoundEvents.ITEM_BRUSH_BRUSHING_SAND,
+			SoundEvents.ITEM_BRUSH_BRUSHING_SAND_COMPLETE,
+			AbstractBlock.Settings.create()
+				.mapColor(MapColor.BLACK)
+				.instrument(NoteBlockInstrument.BASEDRUM)
+				.strength(0.5F)
+				.sounds(BlockSoundGroup.SOUL_SOIL)
+		)
+	);
+
 	public static void init() {
 		BlockEntityType.BRUSHABLE_BLOCK.addSupportedBlock(SUSPICIOUS_NETHERRACK);
+		BlockEntityType.BRUSHABLE_BLOCK.addSupportedBlock(SUSPICIOUS_SOUL_SAND);
+		BlockEntityType.BRUSHABLE_BLOCK.addSupportedBlock(SUSPICIOUS_SOUL_SOIL);
 	}
 }

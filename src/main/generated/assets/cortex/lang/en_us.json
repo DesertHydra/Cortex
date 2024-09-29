@@ -2,6 +2,8 @@
   "block.cortex.lapis_formation": "Lapis Lazuli Formation",
   "block.cortex.redstone_formation": "Redstone Formation",
   "block.cortex.suspicious_netherrack": "Suspicious Netherrack",
+  "block.cortex.suspicious_soul_sand": "Suspicious Soul Sand",
+  "block.cortex.suspicious_soul_soil": "Suspicious Soul Soil",
   "item.cortex.raw_diamond": "Raw Diamond",
   "item.cortex.raw_emerald": "Raw Emerald",
   "item.cortex.redstone": "Redstone"
