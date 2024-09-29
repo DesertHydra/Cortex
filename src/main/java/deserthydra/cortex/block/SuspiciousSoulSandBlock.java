@@ -1,11 +1,11 @@
 package deserthydra.cortex.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
