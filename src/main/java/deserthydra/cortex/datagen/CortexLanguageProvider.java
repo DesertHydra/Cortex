@@ -30,5 +30,6 @@ public class CortexLanguageProvider extends FabricLanguageProvider {
 		builder.add(CortexItems.RAW_DIAMOND, "Raw Diamond");
 		builder.add(CortexItems.RAW_EMERALD, "Raw Emerald");
 		builder.add(CortexItems.REDSTONE, "Redstone");
+		builder.add(CortexItems.ANCIENT_DEBRIS, "Ancient Debris");
 	}
 }
