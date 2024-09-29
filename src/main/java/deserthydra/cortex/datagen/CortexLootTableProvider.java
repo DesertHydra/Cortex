@@ -30,7 +30,8 @@ public class CortexLootTableProvider extends SimpleFabricLootTableProvider {
 				.pool(
 					LootPool.builder()
 						.rolls(ConstantLootNumberProvider.create(1.0F))
-						.with(ItemEntry.builder(Items.NETHERITE_SCRAP))
+						.with(ItemEntry.builder(Items.NETHERITE_SCRAP).weight(5))
+						.with(ItemEntry.builder(Items.ANCIENT_DEBRIS).weight(1))
 				)
 		);
 
@@ -40,7 +41,8 @@ public class CortexLootTableProvider extends SimpleFabricLootTableProvider {
 				.pool(
 					LootPool.builder()
 						.rolls(ConstantLootNumberProvider.create(1.0F))
-						.with(ItemEntry.builder(Items.NETHERITE_SCRAP))
+						.with(ItemEntry.builder(Items.NETHERITE_SCRAP).weight(5))
+						.with(ItemEntry.builder(Items.ANCIENT_DEBRIS).weight(1))
 				)
 		);
 	}

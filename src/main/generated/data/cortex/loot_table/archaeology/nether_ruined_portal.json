@@ -6,7 +6,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:netherite_scrap"
+          "name": "minecraft:netherite_scrap",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ancient_debris"
         }
       ],
       "rolls": 1.0
