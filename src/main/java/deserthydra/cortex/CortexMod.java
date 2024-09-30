@@ -17,6 +17,7 @@ import net.minecraft.block.dispenser.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -103,6 +104,24 @@ public class CortexMod implements ModInitializer {
 					stack.decrement(1);
 				}
 				player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return ActionResult.SUCCESS;
+			}
+
+			return ActionResult.PASS;
+		});
+
+		//netherite
+		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+			var stack = player.getOffHandStack();
+			if (player.getStackInHand(hand).isOf(Items.DIAMOND_PICKAXE) && !player.isSpectator() &&
+				player.getOffHandStack().isOf(CortexItems.SMELTED_DEBRIS) &&
+				world.getBlockState(hitResult.getBlockPos()).isIn(BlockTags.ANVILS)) {
+				player.getInventory().offerOrDrop(new ItemStack(Items.NETHERITE_INGOT));
+				// This wouldn't be needed if we were adding behavior directly to a grindstone
+				if (!player.getAbilities().creativeMode) {
+					stack.decrement(1);
+				}
+				player.playSound(SoundEvents.BLOCK_ANVIL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				return ActionResult.SUCCESS;
 			}
 
