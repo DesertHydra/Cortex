@@ -73,7 +73,7 @@ public class CortexItems {
 	);
 
 	public static final Item SMELTED_DEBRIS = item(
-		"ancient_debris",
+		"smelted_debris",
 		new Item(new Item.Settings().fireproof())
 	);
 
@@ -103,7 +103,7 @@ public class CortexItems {
 		});
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-			entries.addAfter(Items.RAW_GOLD, RAW_DIAMOND, RAW_EMERALD, SMELTED_DEBRIS);
+			entries.addAfter(Items.RAW_GOLD, RAW_DIAMOND, RAW_EMERALD);
 			entries.addAfter(Items.LAPIS_LAZULI, REDSTONE);
 		});
 	}
