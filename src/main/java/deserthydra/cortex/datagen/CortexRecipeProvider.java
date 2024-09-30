@@ -14,6 +14,7 @@ import net.minecraft.recipe.RecipeCategory;
 import net.minecraft.registry.HolderLookup;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 // Since we are using RecipesProvider instead of FabricRecipeProvider,
@@ -32,6 +33,7 @@ public class CortexRecipeProvider extends RecipesProvider {
 
 		FabricRecipeProvider.offerThreeByThreeCompactingRecipe(exporter, RecipeCategory.MISC, CortexItems.ANCIENT_DEBRIS, Items.NETHERITE_SCRAP);
 
+
 		// 4 Redstone Dust to Redstone
 		ShapedRecipeJsonFactory.create(RecipeCategory.REDSTONE, CortexItems.REDSTONE, 1)
 			.ingredient('#', Items.REDSTONE)
@@ -47,5 +49,8 @@ public class CortexRecipeProvider extends RecipesProvider {
 			.group("cortex_redstone")
 			.criterion(hasItem(Blocks.REDSTONE_BLOCK), conditionsFromItem(Blocks.REDSTONE_BLOCK))
 			.offerTo(exporter, Identifier.ofDefault("redstone"));
+
+		// debris smelting
+		FabricRecipeProvider.offerBlasting(exporter, List.of(CortexItems.ANCIENT_DEBRIS), RecipeCategory.MISC, CortexItems.SMELTED_DEBRIS, 0, 200, "smelted_debris");
 	}
 }
