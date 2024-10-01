@@ -48,7 +48,7 @@ public abstract class NetherFossilGeneratorPieceMixin extends SimpleStructurePie
 				if (BLOCKS_TO_SUSPICIOUS_BLOCKS.containsKey(world.getBlockState(newPos.down()).getBlock())) {
 					for (int i = 3; i < 6; i++) {
 						var downPos = newPos.down(i);
-						if (random.nextFloat() < 0.05F) {
+						if (random.nextFloat() < 0.03F) {
 							var downBlock = world.getBlockState(downPos).getBlock();
 							if (BLOCKS_TO_SUSPICIOUS_BLOCKS.containsKey(downBlock)) {
 								boolean noNearbyNeighbors = BlockPos.streamOutwards(downPos, 2, 2, 2).noneMatch(outPos -> BLOCKS_TO_SUSPICIOUS_BLOCKS.containsValue(world.getBlockState(outPos).getBlock()));
