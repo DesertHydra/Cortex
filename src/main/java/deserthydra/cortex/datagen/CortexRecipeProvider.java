@@ -51,6 +51,9 @@ public class CortexRecipeProvider extends RecipesProvider {
 			.offerTo(exporter, Identifier.ofDefault("redstone"));
 
 		// debris smelting
-		FabricRecipeProvider.offerBlasting(exporter, List.of(CortexItems.ANCIENT_DEBRIS), RecipeCategory.MISC, CortexItems.SMELTED_DEBRIS, 0, 200, "smelted_debris");
+		FabricRecipeProvider.offerBlasting(exporter, List.of(CortexItems.ANCIENT_DEBRIS), RecipeCategory.MISC, CortexItems.SMELTED_DEBRIS, 0, 600, "smelted_debris");
+
+
+
 	}
 }

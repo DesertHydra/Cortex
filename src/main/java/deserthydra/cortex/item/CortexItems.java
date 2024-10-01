@@ -105,6 +105,12 @@ public class CortexItems {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
 			entries.addAfter(Items.RAW_GOLD, RAW_DIAMOND, RAW_EMERALD);
 			entries.addAfter(Items.LAPIS_LAZULI, REDSTONE);
+			entries.addAfter(Items.DIAMOND, ANCIENT_DEBRIS);
+			entries.addAfter(Items.GOLD_NUGGET, Items.NETHERITE_SCRAP);
+		});
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
+			entries.addAfter(Items.SNORT_POTTERY_SHERD, Items.ANCIENT_DEBRIS);
 		});
 	}
 }
