@@ -14,6 +14,7 @@ import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AnvilBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.dispenser.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
@@ -24,6 +25,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPointer;
+import net.minecraft.world.WorldEvents;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.OreConfiguredFeatures;
@@ -115,14 +117,24 @@ public class CortexMod implements ModInitializer {
 		//netherite
 		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
 			var stack = player.getOffHandStack();
-			var state = world.getBlockState(hitResult.getBlockPos()).isIn(BlockTags.ANVILS);
+			var state = world.getBlockState(hitResult.getBlockPos());
+			var pos = hitResult.getBlockPos();
 			if (player.getStackInHand(hand).isOf(Items.DIAMOND_PICKAXE) && !player.isSpectator() &&
-				player.getOffHandStack().isOf(CortexItems.SMELTED_DEBRIS) &&
-				world.getBlockState(hitResult.getBlockPos()).isIn(BlockTags.ANVILS)) {
+				player.getOffHandStack().isOf(CortexItems.SMELTED_DEBRIS) && state.isIn(BlockTags.ANVILS)) {
 				player.getInventory().offerOrDrop(new ItemStack(Items.NETHERITE_INGOT));
 				// This wouldn't be needed if we were adding behavior directly to a grindstone
 				if (!player.getAbilities().creativeMode) {
-					world.setBlockState(state, AnvilBlock.getLandingState(state);
+					// Gets the new damaged anvil state
+					var newState = AnvilBlock.getLandingState(state);
+					if (newState != null) {
+						// If newState isn't null, it means we can safely set the block and make the anvil hitting noise
+						world.setBlockState(pos, AnvilBlock.getLandingState(state), Block.NOTIFY_LISTENERS);
+						world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0);
+					} else {
+						// Else, we can't, so nuke the block and make the destroy sound
+						world.removeBlock(pos,  false);
+						world.syncWorldEvent(WorldEvents.ANVIL_DESTROYED, pos, 0);
+					}
 					stack.decrement(1);
 				}
 				player.playSound(SoundEvents.BLOCK_ANVIL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
