@@ -12,6 +12,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.dispenser.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
@@ -113,12 +115,14 @@ public class CortexMod implements ModInitializer {
 		//netherite
 		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
 			var stack = player.getOffHandStack();
+			var state = world.getBlockState(hitResult.getBlockPos()).isIn(BlockTags.ANVILS);
 			if (player.getStackInHand(hand).isOf(Items.DIAMOND_PICKAXE) && !player.isSpectator() &&
 				player.getOffHandStack().isOf(CortexItems.SMELTED_DEBRIS) &&
 				world.getBlockState(hitResult.getBlockPos()).isIn(BlockTags.ANVILS)) {
 				player.getInventory().offerOrDrop(new ItemStack(Items.NETHERITE_INGOT));
 				// This wouldn't be needed if we were adding behavior directly to a grindstone
 				if (!player.getAbilities().creativeMode) {
+					world.setBlockState(state, AnvilBlock.getLandingState(state);
 					stack.decrement(1);
 				}
 				player.playSound(SoundEvents.BLOCK_ANVIL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
