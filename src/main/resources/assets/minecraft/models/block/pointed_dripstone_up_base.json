@@ -1,0 +1,43 @@
+{
+	"texture_size": [64, 64],
+	"textures": {
+    "particle": "block/dripstone_block",
+    "1": "cortex:block/dripstone_block_large"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 1.85],
+			"to": [15, 6.4, 14.4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8.15]},
+			"faces": {
+				"north": {"uv": [3.25, 8.25, 6.75, 9.75], "texture": "#1"},
+				"east": {"uv": [0.25, 8.25, 3.25, 9.75], "texture": "#1"},
+				"south": {"uv": [9.75, 8.25, 13.25, 9.75], "texture": "#1"},
+				"west": {"uv": [6.75, 8.25, 9.75, 9.75], "texture": "#1"},
+				"up": {"uv": [6.75, 8.25, 3.25, 5.25], "texture": "#1"},
+				"down": {"uv": [10.25, 5.25, 6.75, 8.25], "texture": "#1"}
+			}
+		},
+		{
+			"from": [1.5, 6.4, 2.65],
+			"to": [13.5, 16, 13.85],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8.15]},
+			"faces": {
+				"north": {"uv": [3, 2.75, 6, 5], "texture": "#1"},
+				"east": {"uv": [0.25, 2.75, 3, 5], "texture": "#1"},
+				"south": {"uv": [8.75, 2.75, 11.75, 5], "texture": "#1"},
+				"west": {"uv": [6, 2.75, 8.75, 5], "texture": "#1"},
+				"up": {"uv": [6, 2.75, 3, 0], "texture": "#1"},
+				"down": {"uv": [9, 0, 6, 2.75], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "group",
+			"origin": [5.25, 2, 6.25],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}
