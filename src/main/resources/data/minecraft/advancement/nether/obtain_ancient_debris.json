@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:nether/root",
+  "criteria": {
+    "ancient_debris": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cortex:ancient_debris"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nether.obtain_ancient_debris.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "cortex:smelted_debris"
+    },
+    "title": {
+      "translate": "advancements.nether.obtain_ancient_debris.title"
+    }
+  },
+  "requirements": [
+    [
+      "ancient_debris"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
