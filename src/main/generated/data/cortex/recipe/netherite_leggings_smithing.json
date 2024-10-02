@@ -1,7 +1,7 @@
 {
   "type": "cortex:anvil",
   "addition": {
-    "item": "cortex:smelted_debris"
+    "item": "cortex:molten_debris"
   },
   "base": {
     "item": "minecraft:diamond_leggings"

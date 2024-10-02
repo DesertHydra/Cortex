@@ -5,8 +5,8 @@
   "block.cortex.suspicious_soul_sand": "Suspicious Soul Sand",
   "block.cortex.suspicious_soul_soil": "Suspicious Soul Soil",
   "item.cortex.ancient_debris": "Ancient Debris",
+  "item.cortex.molten_debris": "Molten Debris",
   "item.cortex.raw_diamond": "Raw Diamond",
   "item.cortex.raw_emerald": "Raw Emerald",
-  "item.cortex.redstone": "Redstone",
-  "item.cortex.smelted_debris": "Smelted Debris"
+  "item.cortex.redstone": "Redstone"
 }

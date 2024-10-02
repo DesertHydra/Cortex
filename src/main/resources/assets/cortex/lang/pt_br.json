@@ -4,8 +4,9 @@
   "block.cortex.suspicious_netherrack": "Netherrack suspeito",
   "block.cortex.suspicious_soul_sand": "Areia das almas suspeita",
   "block.cortex.suspicious_soul_soil": "Terra das almas suspeita",
+  "item.cortex.ancient_debris": "Detrito ancestral",
+  "item.cortex.molten_debris": "Detrito derretido",
   "item.cortex.raw_diamond": "Diamante bruto",
   "item.cortex.raw_emerald": "Esmeralda bruta",
-  "item.cortex.redstone": "Redstone",
-  "item.cortex.ancient_debris": "Detrito ancestral"
+  "item.cortex.redstone": "Redstone"
 }

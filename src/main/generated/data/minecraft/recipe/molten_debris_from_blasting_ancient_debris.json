@@ -3,11 +3,11 @@
   "category": "misc",
   "cookingtime": 600,
   "experience": 0.0,
-  "group": "smelted_debris",
+  "group": "molten_debris",
   "ingredient": {
     "item": "cortex:ancient_debris"
   },
   "result": {
-    "id": "cortex:smelted_debris"
+    "id": "cortex:molten_debris"
   }
 }

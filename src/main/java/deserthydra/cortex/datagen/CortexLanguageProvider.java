@@ -9,7 +9,6 @@ import deserthydra.cortex.block.CortexBlocks;
 import deserthydra.cortex.item.CortexItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import net.minecraft.item.Items;
 import net.minecraft.registry.HolderLookup;
 
 import java.util.concurrent.CompletableFuture;
@@ -31,6 +30,6 @@ public class CortexLanguageProvider extends FabricLanguageProvider {
 		builder.add(CortexItems.RAW_EMERALD, "Raw Emerald");
 		builder.add(CortexItems.REDSTONE, "Redstone");
 		builder.add(CortexItems.ANCIENT_DEBRIS, "Ancient Debris");
-		builder.add(CortexItems.SMELTED_DEBRIS, "Smelted Debris");
+		builder.add(CortexItems.MOLTEN_DEBRIS, "Molten Debris");
 	}
 }
