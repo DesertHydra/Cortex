@@ -1,0 +1,13 @@
+{
+  "type": "cortex:anvil",
+  "addition": {
+    "item": "cortex:smelted_debris"
+  },
+  "base": {
+    "item": "minecraft:diamond_pickaxe"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:netherite_pickaxe"
+  }
+}
