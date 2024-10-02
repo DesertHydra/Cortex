@@ -3,7 +3,7 @@
   "id": "cortex",
   "version": "${version}",
   "name": "Cortex",
-  "description": "Small redesigns to various ores.",
+  "description": "An overhaul of the 'mine' part of Minecraft without redesigning or adding ores.",
   "authors": [
     "Ennui Langeweile",
     "Isan AWrathfulVoid"
