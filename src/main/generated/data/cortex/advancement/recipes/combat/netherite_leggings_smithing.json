@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_smelted_debris": {
+    "has_molten_debris": {
       "conditions": {
         "items": [
           {
-            "items": "cortex:smelted_debris"
+            "items": "cortex:molten_debris"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_smelted_debris"
+      "has_molten_debris"
     ]
   ],
   "rewards": {

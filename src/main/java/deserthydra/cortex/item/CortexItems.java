@@ -72,8 +72,8 @@ public class CortexItems {
 		new Item(new Item.Settings().fireproof())
 	);
 
-	public static final Item SMELTED_DEBRIS = item(
-		"smelted_debris",
+	public static final Item MOLTEN_DEBRIS = item(
+		"molten_debris",
 		new Item(new Item.Settings().fireproof())
 	);
 

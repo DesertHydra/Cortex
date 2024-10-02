@@ -18,7 +18,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "cortex:smelted_debris"
+      "id": "cortex:molten_debris"
     },
     "title": {
       "translate": "advancements.nether.obtain_ancient_debris.title"

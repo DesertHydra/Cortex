@@ -121,7 +121,7 @@ public class CortexMod implements ModInitializer {
 			var state = world.getBlockState(hitResult.getBlockPos());
 			var pos = hitResult.getBlockPos();
 			if (player.getStackInHand(hand).isOf(Items.DIAMOND_PICKAXE) && !player.isSpectator() &&
-				player.getOffHandStack().isOf(CortexItems.SMELTED_DEBRIS) && state.isIn(BlockTags.ANVILS)) {
+				player.getOffHandStack().isOf(CortexItems.MOLTEN_DEBRIS) && state.isIn(BlockTags.ANVILS)) {
 				player.getInventory().offerOrDrop(new ItemStack(Items.NETHERITE_INGOT));
 				// This wouldn't be needed if we were adding behavior directly to a grindstone
 				if (!player.getAbilities().creativeMode) {

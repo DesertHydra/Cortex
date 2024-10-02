@@ -54,7 +54,7 @@ public class CortexRecipeProvider extends RecipesProvider {
 			.offerTo(exporter, Identifier.ofDefault("redstone"));
 
 		// debris smelting
-		FabricRecipeProvider.offerBlasting(exporter, List.of(CortexItems.ANCIENT_DEBRIS), RecipeCategory.MISC, CortexItems.SMELTED_DEBRIS, 0, 600, "smelted_debris");
+		FabricRecipeProvider.offerBlasting(exporter, List.of(CortexItems.ANCIENT_DEBRIS), RecipeCategory.MISC, CortexItems.MOLTEN_DEBRIS, 0, 600, getItemPath(CortexItems.MOLTEN_DEBRIS));
 
 		// Netherite upgrades
 		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.COMBAT, Items.DIAMOND_HELMET, Items.NETHERITE_HELMET);
@@ -72,10 +72,10 @@ public class CortexRecipeProvider extends RecipesProvider {
 		AnvilRecipeJsonFactory.create(
 				category,
 				Ingredient.ofItems(input),
-				Ingredient.ofItems(CortexItems.SMELTED_DEBRIS),
+				Ingredient.ofItems(CortexItems.MOLTEN_DEBRIS),
 				output
 			)
-			.criterion(hasItem(CortexItems.SMELTED_DEBRIS), conditionsFromItem(CortexItems.SMELTED_DEBRIS))
+			.criterion(hasItem(CortexItems.MOLTEN_DEBRIS), conditionsFromItem(CortexItems.MOLTEN_DEBRIS))
 			.offerTo(exporter, CortexUtils.id(getItemPath(output) + "_smithing"));
 	}
 }
