@@ -7,12 +7,13 @@ package deserthydra.cortex;
 
 import deserthydra.cortex.block.CortexBlocks;
 import deserthydra.cortex.item.CortexItems;
+import deserthydra.cortex.recipe.CortexRecipeSerializers;
+import deserthydra.cortex.recipe.CortexRecipeTypes;
 import deserthydra.cortex.worldgen.CortexPlacedFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -30,14 +31,14 @@ import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.OreConfiguredFeatures;
 import net.minecraft.world.gen.feature.OrePlacedFeatures;
-import net.minecraft.world.gen.feature.StructureFeature;
-import net.minecraft.world.gen.structure.BuiltInStructures;
 
 public class CortexMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		CortexBlocks.init();
 		CortexItems.init();
+		CortexRecipeTypes.init();
+		CortexRecipeSerializers.init();
 
 		BiomeModifications.addFeature(
 			context -> context.hasFeature(OreConfiguredFeatures.ORE_REDSTONE),
