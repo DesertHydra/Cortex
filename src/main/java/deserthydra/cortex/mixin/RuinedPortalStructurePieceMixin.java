@@ -1,3 +1,8 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
 package deserthydra.cortex.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -5,10 +10,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import deserthydra.cortex.block.CortexBlocks;
 import deserthydra.cortex.loot.CortexLootTables;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.LootTables;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.piece.RuinedPortalStructurePiece;
 import net.minecraft.util.math.BlockBox;
