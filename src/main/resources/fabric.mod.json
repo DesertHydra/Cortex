@@ -3,14 +3,15 @@
   "id": "cortex",
   "version": "${version}",
   "name": "Cortex",
-  "description": "Small redesigns to various ores.",
+  "description": "An overhaul of the 'mine' part of Minecraft without redesigning or adding ores.",
   "authors": [
     "Ennui Langeweile",
     "Isan AWrathfulVoid"
   ],
   "contact": {
-    "homepage": "https://github.com/DesertHydra/Cortex",
-    "issues": "https://github.com/DesertHydra/Cortex/issues"
+    "homepage": "https://modrinth.com/mod/cortex",
+    "issues": "https://github.com/DesertHydra/Cortex/issues",
+    "sources": "https://github.com/DesertHydra/Cortex"
   },
   "license": "MPL-2.0",
   "icon": "assets/cortex/icon.png",
