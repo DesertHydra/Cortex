@@ -57,9 +57,11 @@ public class CortexRecipeProvider extends RecipesProvider {
 		FabricRecipeProvider.offerBlasting(exporter, List.of(CortexItems.ANCIENT_DEBRIS), RecipeCategory.MISC, CortexItems.SMELTED_DEBRIS, 0, 600, "smelted_debris");
 
 		// Netherite upgrades
-		// TODO - hey wanna do armor? there's a cozy spot on the next line:
-
-		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.COMBAT, Items.DIAMOND_AXE, Items.NETHERITE_SWORD);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.COMBAT, Items.DIAMOND_HELMET, Items.NETHERITE_HELMET);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.COMBAT, Items.DIAMOND_CHESTPLATE, Items.NETHERITE_CHESTPLATE);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.COMBAT, Items.DIAMOND_LEGGINGS, Items.NETHERITE_LEGGINGS);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.COMBAT, Items.DIAMOND_BOOTS, Items.NETHERITE_BOOTS);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.COMBAT, Items.DIAMOND_SWORD, Items.NETHERITE_SWORD);
 		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.TOOLS, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
 		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.TOOLS, Items.DIAMOND_PICKAXE, Items.NETHERITE_PICKAXE);
 		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.TOOLS, Items.DIAMOND_HOE, Items.NETHERITE_HOE);
