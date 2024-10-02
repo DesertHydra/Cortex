@@ -4,10 +4,10 @@
     "item": "cortex:smelted_debris"
   },
   "base": {
-    "item": "minecraft:diamond_sword"
+    "item": "minecraft:diamond_chestplate"
   },
   "result": {
     "count": 1,
-    "id": "minecraft:netherite_sword"
+    "id": "minecraft:netherite_chestplate"
   }
 }
