@@ -1,6 +1,8 @@
 package deserthydra.cortex.datagen;
 
+import deserthydra.cortex.CortexUtils;
 import deserthydra.cortex.item.CortexItems;
+import deserthydra.cortex.recipe.AnvilRecipeJsonFactory;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
@@ -8,6 +10,7 @@ import net.minecraft.data.server.RecipesProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeCategory;
@@ -53,7 +56,24 @@ public class CortexRecipeProvider extends RecipesProvider {
 		// debris smelting
 		FabricRecipeProvider.offerBlasting(exporter, List.of(CortexItems.ANCIENT_DEBRIS), RecipeCategory.MISC, CortexItems.SMELTED_DEBRIS, 0, 600, "smelted_debris");
 
+		// Netherite upgrades
+		// TODO - hey wanna do armor? there's a cozy spot on the next line:
 
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.COMBAT, Items.DIAMOND_AXE, Items.NETHERITE_SWORD);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.TOOLS, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.TOOLS, Items.DIAMOND_PICKAXE, Items.NETHERITE_PICKAXE);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.TOOLS, Items.DIAMOND_HOE, Items.NETHERITE_HOE);
+		offerNetheriteUpgradeRecipe(exporter, RecipeCategory.TOOLS, Items.DIAMOND_SHOVEL, Items.NETHERITE_SHOVEL);
+	}
 
+	private static void offerNetheriteUpgradeRecipe(RecipeExporter exporter, RecipeCategory category, Item input, Item output) {
+		AnvilRecipeJsonFactory.create(
+				category,
+				Ingredient.ofItems(input),
+				Ingredient.ofItems(CortexItems.SMELTED_DEBRIS),
+				output
+			)
+			.criterion(hasItem(CortexItems.SMELTED_DEBRIS), conditionsFromItem(CortexItems.SMELTED_DEBRIS))
+			.offerTo(exporter, CortexUtils.id(getItemPath(output) + "_smithing"));
 	}
 }

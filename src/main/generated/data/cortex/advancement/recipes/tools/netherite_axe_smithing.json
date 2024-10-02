@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_smelted_debris": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cortex:smelted_debris"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cortex:netherite_axe_smithing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_smelted_debris"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cortex:netherite_axe_smithing"
+    ]
+  }
+}
