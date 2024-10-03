@@ -27,7 +27,7 @@ public class CortexBlocks {
 				.dynamicBounds()
 				.offsetType(AbstractBlock.OffsetType.XZ)
 				.sounds(BlockSoundGroup.METAL)
-				.solidBlock(Blocks::nonSolid)
+				.solid()
 		)
 	);
 
@@ -43,7 +43,7 @@ public class CortexBlocks {
 				.dynamicBounds()
 				.offsetType(AbstractBlock.OffsetType.XZ)
 				.sounds(BlockSoundGroup.METAL)
-				.solidBlock(Blocks::nonSolid)
+				.solid()
 		)
 	);
 

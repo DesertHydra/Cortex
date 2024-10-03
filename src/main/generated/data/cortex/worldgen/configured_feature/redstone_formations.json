@@ -12,7 +12,8 @@
                 "data": {
                   "Name": "cortex:redstone_formation",
                   "Properties": {
-                    "facing": "north"
+                    "facing": "north",
+                    "waterlogged": "false"
                   }
                 },
                 "weight": 1
@@ -21,7 +22,8 @@
                 "data": {
                   "Name": "cortex:redstone_formation",
                   "Properties": {
-                    "facing": "east"
+                    "facing": "east",
+                    "waterlogged": "false"
                   }
                 },
                 "weight": 1
@@ -30,7 +32,8 @@
                 "data": {
                   "Name": "cortex:redstone_formation",
                   "Properties": {
-                    "facing": "south"
+                    "facing": "south",
+                    "waterlogged": "false"
                   }
                 },
                 "weight": 1
@@ -39,7 +42,8 @@
                 "data": {
                   "Name": "cortex:redstone_formation",
                   "Properties": {
-                    "facing": "west"
+                    "facing": "west",
+                    "waterlogged": "false"
                   }
                 },
                 "weight": 1
@@ -56,7 +60,10 @@
             "predicates": [
               {
                 "type": "minecraft:matching_blocks",
-                "blocks": "minecraft:air"
+                "blocks": [
+                  "minecraft:air",
+                  "minecraft:water"
+                ]
               },
               {
                 "type": "minecraft:matching_block_tag",
