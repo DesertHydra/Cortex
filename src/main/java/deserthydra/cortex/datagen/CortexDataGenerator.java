@@ -88,7 +88,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 			CortexConfiguredFeatures.LAPIS_FORMATIONS,
 			Feature.RANDOM_PATCH,
 			new RandomPatchFeatureConfig(
-				196,
+				128,
 				7,
 				3,
 				PlacedFeatureUtil.filtered(
