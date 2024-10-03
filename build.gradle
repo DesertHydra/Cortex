@@ -40,10 +40,10 @@ dependencies {
 }
 
 processResources {
-	inputs.properties 'version': version, 'group': project.group
+	inputs.properties 'version': version
 
-	filesMatching('quilt.mod.json') {
-		expand 'version': version, 'group': project.group
+	filesMatching('fabric.mod.json') {
+		expand 'version': version
 	}
 
 	// It would be super confusing if the lang/README was on the JAR file
