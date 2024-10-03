@@ -12,7 +12,6 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.BootstrapContext;
-import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistrySetBuilder;
 import net.minecraft.registry.tag.BlockTags;
@@ -48,7 +47,6 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 	public void buildRegistry(RegistrySetBuilder builder) {
 		builder.add(RegistryKeys.CONFIGURED_FEATURE, this::bootstrapConfiguredFeatures);
 		builder.add(RegistryKeys.PLACED_FEATURE, this::bootstrapPlacedFeatures);
-		builder.build(DynamicRegistryManager.EMPTY);
 	}
 
 	private void bootstrapConfiguredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -88,7 +86,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 			CortexConfiguredFeatures.LAPIS_FORMATIONS,
 			Feature.RANDOM_PATCH,
 			new RandomPatchFeatureConfig(
-				128,
+				196,
 				7,
 				3,
 				PlacedFeatureUtil.filtered(
