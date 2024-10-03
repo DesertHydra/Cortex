@@ -7,9 +7,11 @@ package deserthydra.cortex.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.registry.Holder;
 import net.minecraft.registry.HolderLookup;
 import net.minecraft.registry.RegistryKeys;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class CortexWorldGenProvider extends FabricDynamicRegistryProvider {
@@ -19,12 +21,20 @@ public class CortexWorldGenProvider extends FabricDynamicRegistryProvider {
 
 	@Override
 	protected void configure(HolderLookup.Provider registries, Entries entries) {
-		entries.addAll(registries.getLookupOrThrow(RegistryKeys.CONFIGURED_FEATURE));
-		entries.addAll(registries.getLookupOrThrow(RegistryKeys.PLACED_FEATURE));
+		addAll(entries, registries.getLookupOrThrow(RegistryKeys.CONFIGURED_FEATURE));
+		addAll(entries, registries.getLookupOrThrow(RegistryKeys.PLACED_FEATURE));
 	}
 
 	@Override
 	public String getName() {
 		return "Cortex World Generation Provider";
+	}
+
+	// This will help us datagen some hacky stuff later
+	public static <T> List<Holder<T>> addAll(Entries entries, HolderLookup.RegistryLookup<T> registry) {
+		return registry.streamElementKeys()
+			.filter(registryKey -> registryKey.getValue().getNamespace().equals("cortex"))
+			.map(key -> entries.add(registry, key))
+			.toList();
 	}
 }
