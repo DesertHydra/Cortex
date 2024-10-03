@@ -6,6 +6,7 @@
   "mixins": [
     "AnvilScreenHandlerMixin",
     "BrewingRecipeRegistryMixin",
+    "ItemGroupsMixin",
     "NetherFossilGeneratorPieceMixin",
     "RuinedPortalStructurePieceMixin"
   ],
