@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_molten_debris": {
+    "has_netherite_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "cortex:molten_debris"
+            "items": "minecraft:netherite_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_molten_debris"
+      "has_netherite_ingot"
     ]
   ],
   "rewards": {

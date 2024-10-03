@@ -77,10 +77,10 @@ public class CortexRecipeProvider extends RecipesProvider {
 		AnvilRecipeJsonFactory.create(
 				category,
 				Ingredient.ofItems(input),
-				Ingredient.ofItems(CortexItems.MOLTEN_DEBRIS),
+				Ingredient.ofItems(Items.NETHERITE_INGOT),
 				output
 			)
-			.criterion(hasItem(CortexItems.MOLTEN_DEBRIS), conditionsFromItem(CortexItems.MOLTEN_DEBRIS))
+			.criterion(hasItem(Items.NETHERITE_INGOT), conditionsFromItem(Items.NETHERITE_INGOT))
 			.offerTo(exporter, CortexUtils.id(getItemPath(output) + "_smithing"));
 	}
 }
