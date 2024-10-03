@@ -69,7 +69,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 						new WeightedBlockStateProvider(redstoneDataPool)
 					),
 					BlockPredicate.allOf(
-						BlockPredicate.IS_AIR,
+						BlockPredicate.IS_AIR_OR_WATER,
 						BlockPredicate.matchingBlockTags(Vec3i.ZERO.down(), BlockTags.REDSTONE_ORES)
 					)
 				)
@@ -95,7 +95,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 						new WeightedBlockStateProvider(lapisLazuliDataPool)
 					),
 					BlockPredicate.allOf(
-						BlockPredicate.IS_AIR,
+						BlockPredicate.IS_AIR_OR_WATER,
 						BlockPredicate.matchingBlockTags(Vec3i.ZERO.down(), BlockTags.LAPIS_ORES)
 					)
 				)
