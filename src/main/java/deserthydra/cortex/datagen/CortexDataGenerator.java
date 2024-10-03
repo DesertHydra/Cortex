@@ -110,7 +110,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 			context,
 			CortexPlacedFeatures.REDSTONE_FORMATIONS,
 			configuredFeatures.getHolderOrThrow(CortexConfiguredFeatures.REDSTONE_FORMATIONS),
-			CountPlacementModifier.create(128),
+			CountPlacementModifier.create(196),
 			HeightRangePlacementModifier.create(UniformHeightProvider.create(YOffset.aboveBottom(-31), YOffset.fixed(16))),
 			BiomePlacementModifier.getInstance()
 		);
