@@ -20,10 +20,10 @@ public class CortexBlocks {
 		CortexUtils.id("redstone_formation"),
 		new RedstoneFormationBlock(
 			AbstractBlock.Settings.create()
-				.mapColor(MapColor.FIRE)
+				.mapColor(MapColor.RED)
 				.toolRequired()
 				.strength(5.0F, 6.0F)
-				.luminance(state -> 15)
+				.luminance(state -> 12)
 				.dynamicBounds()
 				.offsetType(AbstractBlock.OffsetType.XZ)
 				.sounds(BlockSoundGroup.METAL)
@@ -36,7 +36,7 @@ public class CortexBlocks {
 		CortexUtils.id("lapis_formation"),
 		new LapisFormationBlock(
 			AbstractBlock.Settings.create()
-				.mapColor(MapColor.FIRE)
+				.mapColor(MapColor.BLUE)
 				.toolRequired()
 				.strength(5.0F, 6.0F)
 				.luminance(state -> 15)
