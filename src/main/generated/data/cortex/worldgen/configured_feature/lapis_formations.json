@@ -13,7 +13,7 @@
                   "Name": "cortex:lapis_formation",
                   "Properties": {
                     "facing": "north",
-                    "waterlogged": "true"
+                    "waterlogged": "false"
                   }
                 },
                 "weight": 1
@@ -23,7 +23,7 @@
                   "Name": "cortex:lapis_formation",
                   "Properties": {
                     "facing": "east",
-                    "waterlogged": "true"
+                    "waterlogged": "false"
                   }
                 },
                 "weight": 1
@@ -33,7 +33,7 @@
                   "Name": "cortex:lapis_formation",
                   "Properties": {
                     "facing": "south",
-                    "waterlogged": "true"
+                    "waterlogged": "false"
                   }
                 },
                 "weight": 1
@@ -43,7 +43,7 @@
                   "Name": "cortex:lapis_formation",
                   "Properties": {
                     "facing": "west",
-                    "waterlogged": "true"
+                    "waterlogged": "false"
                   }
                 },
                 "weight": 1
