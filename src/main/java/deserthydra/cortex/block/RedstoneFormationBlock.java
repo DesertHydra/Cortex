@@ -19,6 +19,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
+// TODO - Make RedstoneFormationBlock extend LapisFormationBlock
 public class RedstoneFormationBlock extends HorizontalFacingBlock implements Waterloggable {
 	public static final MapCodec<LapisFormationBlock> CODEC = createCodec(LapisFormationBlock::new);
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 13.0, 14.0);

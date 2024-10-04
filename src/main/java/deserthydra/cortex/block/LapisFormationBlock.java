@@ -25,6 +25,10 @@ public class LapisFormationBlock extends HorizontalFacingBlock implements Waterl
 
 	public LapisFormationBlock(Settings settings) {
 		super(settings);
+		this.setDefaultState(
+			this.stateManager.getDefaultState()
+				.with(Properties.WATERLOGGED, false)
+		);
 	}
 
 	@Override
