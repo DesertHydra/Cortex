@@ -26,7 +26,7 @@ public class CortexWorldGenProvider extends FabricDynamicRegistryProvider {
 	}
 
 	@Override
-	public String getName() {
+	public String getDescription() {
 		return "Cortex World Generation Provider";
 	}
 

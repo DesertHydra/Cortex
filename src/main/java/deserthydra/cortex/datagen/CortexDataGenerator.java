@@ -6,11 +6,13 @@
 package deserthydra.cortex.datagen;
 
 import deserthydra.cortex.block.CortexBlocks;
+import deserthydra.cortex.block.RedstoneFormationBlock;
 import deserthydra.cortex.worldgen.CortexConfiguredFeatures;
 import deserthydra.cortex.worldgen.CortexPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.registry.BootstrapContext;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistrySetBuilder;
@@ -39,7 +41,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(CortexLanguageProvider::new);
 		pack.addProvider(CortexLootTableProvider::new);
 		pack.addProvider(CortexModelProvider::new);
-		pack.addProvider(CortexRecipeProvider::new);
+		pack.addProvider(CortexRecipeProvider.CortexRecipeGenerator::new);
 		pack.addProvider(CortexWorldGenProvider::new);
 	}
 
@@ -52,7 +54,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 	private void bootstrapConfiguredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		DataPool.Builder<BlockState> redstoneDataPool = DataPool.builder();
 		for (var direction : Direction.Type.HORIZONTAL) {
-			redstoneDataPool.addWeighted(CortexBlocks.REDSTONE_FORMATION.getDefaultState().with(Properties.HORIZONTAL_FACING, direction), 1);
+			redstoneDataPool.addWeighted(CortexBlocks.REDSTONE_FORMATION.getDefaultState().with(RedstoneFormationBlock.FACING, direction), 1);
 		}
 
 		ConfiguredFeatureUtil.register(

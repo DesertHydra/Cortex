@@ -5,8 +5,9 @@
  */
 package deserthydra.cortex.item;
 
-import deserthydra.cortex.CortexUtils;
+import deserthydra.cortex.util.CortexUtils;
 import deserthydra.cortex.block.CortexBlocks;
+import deserthydra.cortex.util.RegistryUtils;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -17,71 +18,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CortexItems {
-	public static final Map<Identifier, Item> ITEMS_TO_REGISTER = new HashMap<>();
+	public static final Item REDSTONE_FORMATION = Items.register(CortexBlocks.REDSTONE_FORMATION);
 
-	/**
-	 * Registers an item using a Cortex id.
-	 */
-	public static Item item(String path, Item item) {
-		ITEMS_TO_REGISTER.put(CortexUtils.id(path), item);
-		return item;
-	}
+	public static final Item LAPIS_FORMATION = Items.register(CortexBlocks.LAPIS_FORMATION);
 
-	public static final Item REDSTONE_FORMATION = item(
-		"redstone_formation",
-		new BlockItem(CortexBlocks.REDSTONE_FORMATION, new Item.Settings())
-	);
+	public static final Item SUSPICIOUS_NETHERRACK = Items.register(CortexBlocks.SUSPICIOUS_NETHERRACK);
 
-	public static final Item LAPIS_FORMATION = item(
-		"lapis_formation",
-		new BlockItem(CortexBlocks.LAPIS_FORMATION, new Item.Settings())
-	);
+	public static final Item SUSPICIOUS_SOUL_SAND = Items.register(CortexBlocks.SUSPICIOUS_SOUL_SAND);
 
-	public static final Item SUSPICIOUS_NETHERRACK = item(
-		"suspicious_netherrack",
-		new BlockItem(CortexBlocks.SUSPICIOUS_NETHERRACK, new Item.Settings())
-	);
+	public static final Item SUSPICIOUS_SOUL_SOIL = Items.register(CortexBlocks.SUSPICIOUS_SOUL_SOIL);
 
-	public static final Item SUSPICIOUS_SOUL_SAND = item(
-		"suspicious_soul_sand",
-		new BlockItem(CortexBlocks.SUSPICIOUS_SOUL_SAND, new Item.Settings())
-	);
+	public static final Item RAW_DIAMOND = RegistryUtils.register("raw_diamond");
 
-	public static final Item SUSPICIOUS_SOUL_SOIL = item(
-		"suspicious_soul_soil",
-		new BlockItem(CortexBlocks.SUSPICIOUS_SOUL_SOIL, new Item.Settings())
-	);
+	public static final Item RAW_EMERALD = RegistryUtils.register("raw_emerald");
 
-	public static final Item RAW_DIAMOND = item(
-		"raw_diamond",
-		new Item(new Item.Settings())
-	);
+	public static final Item REDSTONE = RegistryUtils.register("redstone");
 
-	public static final Item RAW_EMERALD = item(
-		"raw_emerald",
-		new Item(new Item.Settings())
-	);
+	public static final Item ANCIENT_DEBRIS = RegistryUtils.register("ancient_debris", new Item.Settings().fireproof());
 
-	public static final Item REDSTONE = item(
-		"redstone",
-		new Item(new Item.Settings())
-	);
-
-	public static final Item ANCIENT_DEBRIS = item(
-		"ancient_debris",
-		new Item(new Item.Settings().fireproof())
-	);
-
-	public static final Item MOLTEN_DEBRIS = item(
-		"molten_debris",
-		new Item(new Item.Settings().fireproof())
-	);
+	public static final Item MOLTEN_DEBRIS = RegistryUtils.register("molten_debris", new Item.Settings().fireproof());
 
 	public static void init() {
-		for (var entry : ITEMS_TO_REGISTER.entrySet()) {
-			Registry.register(Registries.ITEM, entry.getKey(), entry.getValue());
-		}
-
 		registerItemGroupOrder();
 	}
 

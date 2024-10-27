@@ -5,7 +5,7 @@
  */
 package deserthydra.cortex.recipe;
 
-import deserthydra.cortex.CortexUtils;
+import deserthydra.cortex.util.CortexUtils;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

@@ -13,7 +13,9 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeCategory;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
 import java.util.LinkedHashMap;
@@ -42,20 +44,20 @@ public class AnvilRecipeJsonFactory {
 		return this;
 	}
 
-	public void offerTo(RecipeExporter exporter, Identifier id)  {
-		this.validate(id);
+	public void offerTo(RecipeExporter exporter, RegistryKey<Recipe<?>> registryKey)  {
+		this.validate(registryKey);
 		var builder = exporter.accept()
-			.putCriteria("has_the_recipe", RecipeUnlockedCriterionTrigger.create(id))
-			.rewards(AdvancementRewards.Builder.recipe(id))
+			.putCriteria("has_the_recipe", RecipeUnlockedCriterionTrigger.create(registryKey))
+			.rewards(AdvancementRewards.Builder.recipe(registryKey))
 			.merger(AdvancementRequirements.RequirementMerger.ANY);
 		this.criteria.forEach(builder::putCriteria);
 		var recipe = new AnvilRecipe(this.base, this.addition, new ItemStack(this.result));
-		exporter.accept(id, recipe, builder.build(id.withPrefix("recipes/" + this.category.getName() + "/")));
+		exporter.accept(registryKey, recipe, builder.build(registryKey.getValue().withPrefix("recipes/" + this.category.getName() + "/")));
 	}
 
-	private void validate(Identifier recipeId) {
+	private void validate(RegistryKey<Recipe<?>> registryKey) {
 		if (this.criteria.isEmpty()) {
-			throw new IllegalArgumentException("No way of obtaining recipe " + recipeId);
+			throw new IllegalArgumentException("No way of obtaining recipe " + registryKey.getValue());
 		}
 	}
 }

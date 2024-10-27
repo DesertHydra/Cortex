@@ -5,7 +5,7 @@
  */
 package deserthydra.cortex.loot;
 
-import deserthydra.cortex.CortexUtils;
+import deserthydra.cortex.util.CortexUtils;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

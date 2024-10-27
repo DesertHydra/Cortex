@@ -10,10 +10,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.registry.HolderLookup;
 import net.minecraft.world.World;
 
@@ -23,8 +21,18 @@ public record AnvilRecipe(
 	ItemStack result
 ) implements Recipe<AnvilRecipeInput> {
 	@Override
-	public RecipeType<?> getType() {
+	public RecipeType<? extends Recipe<AnvilRecipeInput>> getType() {
 		return CortexRecipeTypes.ANVIL;
+	}
+
+	@Override
+	public IngredientPlacement getIngredientPlacement() {
+		return null;
+	}
+
+	@Override
+	public RecipeBookCategory getRecipeBookCategory() {
+		return null;
 	}
 
 	@Override
@@ -39,6 +47,7 @@ public record AnvilRecipe(
 		return stack;
 	}
 
+	/*
 	@Override
 	public boolean fits(int width, int height) {
 		return width >= 2 && height >= 1;
@@ -48,9 +57,10 @@ public record AnvilRecipe(
 	public ItemStack getResult(HolderLookup.Provider provider) {
 		return this.result;
 	}
+	 */
 
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<? extends Recipe<AnvilRecipeInput>> getSerializer() {
 		return CortexRecipeSerializers.ANVIL;
 	}
 

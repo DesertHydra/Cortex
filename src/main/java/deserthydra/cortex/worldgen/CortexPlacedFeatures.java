@@ -5,7 +5,7 @@
  */
 package deserthydra.cortex.worldgen;
 
-import deserthydra.cortex.CortexUtils;
+import deserthydra.cortex.util.CortexUtils;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.PlacedFeature;

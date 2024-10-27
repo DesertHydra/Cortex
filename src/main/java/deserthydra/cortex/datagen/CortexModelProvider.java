@@ -6,6 +6,7 @@
 package deserthydra.cortex.datagen;
 
 import deserthydra.cortex.block.CortexBlocks;
+import deserthydra.cortex.block.RedstoneFormationBlock;
 import deserthydra.cortex.item.CortexItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -28,7 +29,7 @@ public class CortexModelProvider extends FabricModelProvider {
 				CortexBlocks.REDSTONE_FORMATION
 			)
 			.coordinate(
-				BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
+				BlockStateVariantMap.create(RedstoneFormationBlock.FACING)
 					.register(Direction.EAST, List.of(
 						BlockStateVariant.create()
 							.put(VariantSettings.Y, VariantSettings.Rotation.R90)
