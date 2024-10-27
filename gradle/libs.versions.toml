@@ -3,12 +3,10 @@
 minecraft = "1.21.1"
 quilt_mappings = "1.21.1+build.3"
 
-quilt_loom = "1.7.4"
-quilt_loader = "0.26.4"
+quilt_loom = "1.8.4"
+quilt_loader = "0.27.0-beta.1"
 
-fabric_api = "0.105.0+1.21.1"
-
-mod_publish_plugin = "0.7.4"
+fabric_api = "0.106.0+1.21.1"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
