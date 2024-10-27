@@ -9,6 +9,7 @@ import deserthydra.cortex.block.CortexBlocks;
 import deserthydra.cortex.item.CortexItems;
 import deserthydra.cortex.recipe.CortexRecipeSerializers;
 import deserthydra.cortex.recipe.CortexRecipeTypes;
+import deserthydra.cortex.util.CortexUtils;
 import deserthydra.cortex.worldgen.CortexPlacedFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;

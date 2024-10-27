@@ -3,6 +3,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
+/*
 package deserthydra.cortex.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
@@ -11,6 +12,7 @@ import deserthydra.cortex.recipe.CortexRecipeTypes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.*;
+import net.minecraft.screen.slot.ItemCombinationSlotManager;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -33,8 +35,8 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 	@Unique
 	private World world;
 
-	public AnvilScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
-		super(type, syncId, playerInventory, context);
+	private AnvilScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, ItemCombinationSlotManager itemCombinationSlotManager) {
+		super(type, syncId, playerInventory, context, itemCombinationSlotManager);
 	}
 
 	@Inject(method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/screen/ScreenHandlerContext;)V", at = @At("TAIL"))
@@ -69,3 +71,4 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 		}
 	}
 }
+*/
