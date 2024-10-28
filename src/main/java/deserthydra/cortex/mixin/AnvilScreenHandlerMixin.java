@@ -51,11 +51,10 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 	@Inject(
 		method = "updateResult",
 		at = @At(
-			value = "FIELD",
-			target = "Lnet/minecraft/screen/AnvilScreenHandler;repairItemUsage:I",
-			ordinal = 0
-		),
-		cancellable = true
+			value = "INVOKE",
+			target = "Lnet/minecraft/item/ItemStack;isEmpty()Z",
+			ordinal = 1
+		)
 	)
 	private void updateResultWithRecipe(CallbackInfo ci, @Local(ordinal = 0) LocalIntRef i, @Local(ordinal = 1) LocalRef<ItemStack> outputStack, @Share("hasRecipe") LocalBooleanRef hasRecipe) {
 		var additionStack = this.ingredientInventory.getStack(1);
@@ -70,20 +69,17 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 
 			recipeHolder.ifPresentOrElse(holder -> {
 				var output = holder.value().craft(recipeInput, this.world.getRegistryManager());
-				if (output.isEnabled(this.world.getEnabledFlags())) {
-					this.result.onResultUpdate(holder);
-					this.result.setStack(0, output);
-					hasRecipe.set(true);
-				}
+				this.result.onResultUpdate(holder);
+				this.result.setStack(0, output);
+				hasRecipe.set(true);
+				i.set(i.get() + 5);
+				outputStack.set(this.result.getStack(0));
 			}, () -> {
 				this.result.onResultUpdate(null);
 				this.result.setStack(0, ItemStack.EMPTY);
 			});
 
-			if (recipeHolder.isPresent()) {
-				i.set(i.get() + 5);
-				outputStack.set(this.result.getStack(0));
-			}
+			hasRecipe.set(hasRecipe.get());
 		}
 	}
 
