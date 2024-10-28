@@ -5,21 +5,27 @@
  */
 package deserthydra.cortex.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
+import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import deserthydra.cortex.recipe.AnvilRecipe;
 import deserthydra.cortex.recipe.AnvilRecipeInput;
 import deserthydra.cortex.recipe.CortexRecipeTypes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeHolder;
-import net.minecraft.screen.*;
+import net.minecraft.screen.AnvilScreenHandler;
+import net.minecraft.screen.ForgingScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.ItemCombinationSlotManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,13 +35,6 @@ import java.util.Optional;
 
 @Mixin(AnvilScreenHandler.class)
 public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
-	@Shadow
-	@Final
-	private Property levelCost;
-
-	@Shadow
-	public abstract void updateResult();
-
 	@Unique
 	private World world;
 
@@ -48,20 +47,20 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 		this.world = inventory.player.getWorld();
 	}
 
-	// FIXME - Add caching to recipe outputs
+	// FIXME - Add caching to recipe outputs..?
 	@Inject(
 		method = "updateResult",
 		at = @At(
-			value = "INVOKE",
-			target = "Lnet/minecraft/screen/Property;set(I)V",
-			ordinal = 0,
-			shift = At.Shift.AFTER
+			value = "FIELD",
+			target = "Lnet/minecraft/screen/AnvilScreenHandler;repairItemUsage:I",
+			ordinal = 0
 		),
 		cancellable = true
 	)
-	private void updateResultWithRecipe(CallbackInfo ci, @Local ItemStack baseStack) {
-		if (!baseStack.isEmpty()) {
-			var recipeInput = new AnvilRecipeInput(baseStack, this.ingredientInventory.getStack(1));
+	private void updateResultWithRecipe(CallbackInfo ci, @Local(ordinal = 0) LocalIntRef i, @Local(ordinal = 1) LocalRef<ItemStack> outputStack, @Share("hasRecipe") LocalBooleanRef hasRecipe) {
+		var additionStack = this.ingredientInventory.getStack(1);
+		if (!additionStack.isEmpty()) {
+			var recipeInput = new AnvilRecipeInput(this.ingredientInventory.getStack(0), additionStack);
 			Optional<RecipeHolder<AnvilRecipe>> recipeHolder;
 			if (this.world instanceof ServerWorld serverWorld) {
 				recipeHolder = serverWorld.m_mlvimbbc().getFirstMatch(CortexRecipeTypes.ANVIL, recipeInput, serverWorld);
@@ -72,15 +71,31 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 			recipeHolder.ifPresentOrElse(holder -> {
 				var output = holder.value().craft(recipeInput, this.world.getRegistryManager());
 				if (output.isEnabled(this.world.getEnabledFlags())) {
-					this.levelCost.set(5);
 					this.result.onResultUpdate(holder);
 					this.result.setStack(0, output);
-					ci.cancel();
+					hasRecipe.set(true);
 				}
 			}, () -> {
 				this.result.onResultUpdate(null);
 				this.result.setStack(0, ItemStack.EMPTY);
 			});
+
+			if (recipeHolder.isPresent()) {
+				i.set(i.get() + 5);
+				outputStack.set(this.result.getStack(0));
+			}
 		}
+	}
+
+	@ModifyExpressionValue(
+		method = "updateResult",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/item/ItemStack;isEmpty()Z",
+			ordinal = 1
+		)
+	)
+	private boolean skipAntiRecipeCode(boolean original, @Share("hasRecipe") LocalBooleanRef hasRecipe) {
+		return hasRecipe.get() || original;
 	}
 }
