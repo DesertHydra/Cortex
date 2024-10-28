@@ -7,6 +7,8 @@ package deserthydra.cortex;
 
 import deserthydra.cortex.block.CortexBlocks;
 import deserthydra.cortex.item.CortexItems;
+import deserthydra.cortex.recipe.CortexRecipeBookCategories;
+import deserthydra.cortex.recipe.CortexRecipeDisplayTypes;
 import deserthydra.cortex.recipe.CortexRecipeSerializers;
 import deserthydra.cortex.recipe.CortexRecipeTypes;
 import deserthydra.cortex.util.CortexUtils;
@@ -40,6 +42,8 @@ public class CortexMod implements ModInitializer {
 		CortexItems.init();
 		CortexRecipeTypes.init();
 		CortexRecipeSerializers.init();
+		CortexRecipeDisplayTypes.init();
+		CortexRecipeBookCategories.init();
 
 		BiomeModifications.addFeature(
 			context -> context.hasFeature(OreConfiguredFeatures.ORE_REDSTONE),
