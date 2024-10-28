@@ -20,6 +20,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class AnvilRecipeJsonFactory {
 	private final RecipeCategory category;
@@ -51,7 +52,7 @@ public class AnvilRecipeJsonFactory {
 			.rewards(AdvancementRewards.Builder.recipe(registryKey))
 			.merger(AdvancementRequirements.RequirementMerger.ANY);
 		this.criteria.forEach(builder::putCriteria);
-		var recipe = new AnvilRecipe(this.base, this.addition, new ItemStack(this.result));
+		var recipe = new AnvilRecipe(Optional.of(this.base), Optional.of(this.addition), new ItemStack(this.result));
 		exporter.accept(registryKey, recipe, builder.build(registryKey.getValue().withPrefix("recipes/" + this.category.getName() + "/")));
 	}
 
