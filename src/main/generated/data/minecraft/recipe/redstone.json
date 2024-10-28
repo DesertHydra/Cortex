@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "cortex_redstone",
   "ingredients": [
-    {
-      "item": "minecraft:redstone_block"
-    }
+    "minecraft:redstone_block"
   ],
   "result": {
     "count": 4,

@@ -4,9 +4,7 @@
   "cookingtime": 600,
   "experience": 0.0,
   "group": "molten_debris",
-  "ingredient": {
-    "item": "cortex:ancient_debris"
-  },
+  "ingredient": "cortex:ancient_debris",
   "result": {
     "id": "cortex:molten_debris"
   }
