@@ -20,7 +20,7 @@ public class RegistryUtils {
 	}
 
 	public static Block register(String path, Function<AbstractBlock.Settings, Block> function, AbstractBlock.Settings settings) {
-		return Blocks.register(createBlockKey(path), Block::new, settings);
+		return Blocks.register(createBlockKey(path), function, settings);
 	}
 
 	// TODO - Add more helper functions here if necessary
@@ -30,11 +30,11 @@ public class RegistryUtils {
 	}
 
 	public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
-		return Items.register(createItemKey(path), Item::new, settings);
+		return Items.register(createItemKey(path), factory, settings);
 	}
 
 	public static Item register(String path, Function<Item.Settings, Item> factory) {
-		return Items.register(createItemKey(path), Item::new);
+		return Items.register(createItemKey(path), factory);
 	}
 
 	public static Item register(String path, Item.Settings settings) {

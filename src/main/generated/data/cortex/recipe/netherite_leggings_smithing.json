@@ -1,11 +1,7 @@
 {
   "type": "cortex:anvil",
-  "addition": {
-    "item": "minecraft:netherite_ingot"
-  },
-  "base": {
-    "item": "minecraft:diamond_leggings"
-  },
+  "addition": "minecraft:netherite_ingot",
+  "base": "minecraft:diamond_leggings",
   "result": {
     "count": 1,
     "id": "minecraft:netherite_leggings"
