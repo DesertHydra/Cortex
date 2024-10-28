@@ -8,18 +8,34 @@ package deserthydra.cortex.recipe;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.RecipeBookCategory;
+import net.minecraft.recipe.display.RecipeDisplay;
+import net.minecraft.recipe.display.SlotDisplay;
 import net.minecraft.registry.HolderLookup;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public record AnvilRecipe(
-	Ingredient base,
-	Ingredient addition,
-	ItemStack result
-) implements Recipe<AnvilRecipeInput> {
+import java.util.List;
+import java.util.Optional;
+
+public class AnvilRecipe implements Recipe<AnvilRecipeInput> {
+	private final Optional<Ingredient> base;
+	private final Optional<Ingredient> addition;
+	private final ItemStack result;
+	@Nullable
+	private IngredientPlacement placement;
+
+	public AnvilRecipe(Optional<Ingredient> base, Optional<Ingredient> addition, ItemStack result) {
+		this.base = base;
+		this.addition = addition;
+		this.result = result;
+	}
+
 	@Override
 	public RecipeType<? extends Recipe<AnvilRecipeInput>> getType() {
 		return CortexRecipeTypes.ANVIL;
@@ -27,17 +43,21 @@ public record AnvilRecipe(
 
 	@Override
 	public IngredientPlacement getIngredientPlacement() {
-		return null;
+		if (this.placement == null) {
+			this.placement = IngredientPlacement.createFromOptions(List.of(this.base, this.addition));
+		}
+
+		return this.placement;
 	}
 
 	@Override
 	public RecipeBookCategory getRecipeBookCategory() {
-		return null;
+		return CortexRecipeBookCategories.ANVIL;
 	}
 
 	@Override
 	public boolean matches(AnvilRecipeInput input, World world) {
-		return this.base.test(input.base()) && this.addition.test(input.addition());
+		return Ingredient.testOptionalIngredient(this.base, input.base()) && Ingredient.testOptionalIngredient(this.addition, input.addition());
 	}
 
 	@Override
@@ -47,34 +67,40 @@ public record AnvilRecipe(
 		return stack;
 	}
 
-	/*
-	@Override
-	public boolean fits(int width, int height) {
-		return width >= 2 && height >= 1;
-	}
-
-	@Override
-	public ItemStack getResult(HolderLookup.Provider provider) {
-		return this.result;
-	}
-	 */
-
 	@Override
 	public RecipeSerializer<? extends Recipe<AnvilRecipeInput>> getSerializer() {
 		return CortexRecipeSerializers.ANVIL;
 	}
 
+	@Override
+	public List<RecipeDisplay> getDisplays() {
+		return List.of(
+			new AnvilRecipeDisplay(
+				Ingredient.createOptionalSlotDisplay(this.base),
+				Ingredient.createOptionalSlotDisplay(this.addition),
+				new SlotDisplay.StackSlotDisplay(this.result),
+				new SlotDisplay.ItemSlotDisplay(Items.ANVIL)
+			)
+		);
+	}
+
 	public static class Serializer implements RecipeSerializer<AnvilRecipe> {
 		private static final MapCodec<AnvilRecipe> CODEC = RecordCodecBuilder.mapCodec(
 			instance -> instance.group(
-				Ingredient.ALLOW_EMPTY_CODEC.fieldOf("base").forGetter(recipe -> recipe.base),
-				Ingredient.ALLOW_EMPTY_CODEC.fieldOf("addition").forGetter(recipe -> recipe.addition),
+				Ingredient.ALLOW_EMPTY_CODEC.optionalFieldOf("base").forGetter(recipe -> recipe.base),
+				Ingredient.ALLOW_EMPTY_CODEC.optionalFieldOf("addition").forGetter(recipe -> recipe.addition),
 				ItemStack.field_51397.fieldOf("result").forGetter(recipe -> recipe.result)
 			).apply(instance, AnvilRecipe::new)
 		);
 
-		private static final PacketCodec<RegistryByteBuf, AnvilRecipe> PACKET_CODEC = PacketCodec.create(
-			AnvilRecipe.Serializer::write, AnvilRecipe.Serializer::read
+		private static final PacketCodec<RegistryByteBuf, AnvilRecipe> PACKET_CODEC = PacketCodec.tuple(
+			Ingredient.OPTIONAL_PACKET_CODEC,
+			recipe -> recipe.base,
+			Ingredient.OPTIONAL_PACKET_CODEC,
+			recipe -> recipe.addition,
+			ItemStack.OPTIONAL_PACKET_CODEC,
+			recipe -> recipe.result,
+			AnvilRecipe::new
 		);
 
 		@Override
@@ -85,20 +111,6 @@ public record AnvilRecipe(
 		@Override
 		public PacketCodec<RegistryByteBuf, AnvilRecipe> getPacketCodec() {
 			return PACKET_CODEC;
-		}
-
-		private static AnvilRecipe read(RegistryByteBuf buf) {
-			var base = Ingredient.PACKET_CODEC.decode(buf);
-			var addition = Ingredient.PACKET_CODEC.decode(buf);
-			var result = ItemStack.PACKET_CODEC.decode(buf);
-
-			return new AnvilRecipe(base, addition, result);
-		}
-
-		private static void write(RegistryByteBuf buf, AnvilRecipe recipe) {
-			Ingredient.PACKET_CODEC.encode(buf, recipe.base);
-			Ingredient.PACKET_CODEC.encode(buf, recipe.addition);
-			ItemStack.PACKET_CODEC.encode(buf, recipe.result);
 		}
 	}
 }
