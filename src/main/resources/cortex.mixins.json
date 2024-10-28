@@ -4,6 +4,7 @@
   "package": "deserthydra.cortex.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AnvilScreenHandlerMixin",
     "BrewingRecipeRegistryMixin",
     "ItemGroupsMixin",
     "NetherFossilGeneratorPieceMixin",

@@ -3,16 +3,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-/*
 package deserthydra.cortex.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import deserthydra.cortex.recipe.AnvilRecipe;
 import deserthydra.cortex.recipe.AnvilRecipeInput;
 import deserthydra.cortex.recipe.CortexRecipeTypes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.RecipeHolder;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.ItemCombinationSlotManager;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -22,6 +24,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Optional;
 
 @Mixin(AnvilScreenHandler.class)
 public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
@@ -44,6 +48,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 		this.world = inventory.player.getWorld();
 	}
 
+	// FIXME - Add caching to recipe outputs
 	@Inject(
 		method = "updateResult",
 		at = @At(
@@ -57,18 +62,25 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 	private void updateResultWithRecipe(CallbackInfo ci, @Local ItemStack baseStack) {
 		if (!baseStack.isEmpty()) {
 			var recipeInput = new AnvilRecipeInput(baseStack, this.ingredientInventory.getStack(1));
-			var matchingRecipes = this.world.getRecipeManager().getAllMatches(CortexRecipeTypes.ANVIL, recipeInput, this.world);
-			if (!matchingRecipes.isEmpty()) {
-				var recipeHolder = matchingRecipes.getFirst();
-				var output = recipeHolder.value().craft(recipeInput, this.world.getRegistryManager());
+			Optional<RecipeHolder<AnvilRecipe>> recipeHolder;
+			if (this.world instanceof ServerWorld serverWorld) {
+				recipeHolder = serverWorld.m_mlvimbbc().getFirstMatch(CortexRecipeTypes.ANVIL, recipeInput, serverWorld);
+			} else {
+				recipeHolder = Optional.empty();
+			}
+
+			recipeHolder.ifPresentOrElse(holder -> {
+				var output = holder.value().craft(recipeInput, this.world.getRegistryManager());
 				if (output.isEnabled(this.world.getEnabledFlags())) {
 					this.levelCost.set(5);
-					this.result.onResultUpdate(recipeHolder);
+					this.result.onResultUpdate(holder);
 					this.result.setStack(0, output);
 					ci.cancel();
 				}
-			}
+			}, () -> {
+				this.result.onResultUpdate(null);
+				this.result.setStack(0, ItemStack.EMPTY);
+			});
 		}
 	}
 }
-*/
