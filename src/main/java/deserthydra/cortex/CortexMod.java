@@ -132,18 +132,24 @@ public class CortexMod implements ModInitializer {
 				if (!player.getAbilities().creativeMode) {
 					// Gets the new damaged anvil state
 					var newState = AnvilBlock.getLandingState(state);
-					if (newState != null) {
-						// If newState isn't null, it means we can safely set the block and make the anvil hitting noise
-						world.setBlockState(pos, AnvilBlock.getLandingState(state), Block.NOTIFY_LISTENERS);
-						world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0);
-					} else {
-						// Else, we can't, so nuke the block and make the destroy sound
-						world.removeBlock(pos,  false);
-						world.syncWorldEvent(WorldEvents.ANVIL_DESTROYED, pos, 0);
+					if (!world.isClient()) {
+						if (newState != null) {
+							// If newState isn't null, it means we can safely set the block and make the anvil hitting noise
+							world.setBlockState(pos, AnvilBlock.getLandingState(state), Block.NOTIFY_LISTENERS);
+							world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0);
+						} else {
+							// Else, we can't, so nuke the block and make the destroy sound
+							world.removeBlock(pos,  false);
+							world.syncWorldEvent(WorldEvents.ANVIL_DESTROYED, pos, 0);
+						}
 					}
 					stack.decrement(1);
+				} else {
+					if (!world.isClient()) {
+						world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0);
+					}
 				}
-				player.playSound(SoundEvents.BLOCK_ANVIL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
 				return ActionResult.SUCCESS;
 			}
 
