@@ -79,7 +79,9 @@ public class CortexMod implements ModInitializer {
 				if (!player.getAbilities().creativeMode) {
 					stack.decrement(1);
 				}
-				player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				if (!world.isClient) {
+					player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
 				return ActionResult.SUCCESS;
 			}
 
@@ -96,7 +98,9 @@ public class CortexMod implements ModInitializer {
 				if (!player.getAbilities().creativeMode) {
 					stack.decrement(1);
 				}
-				player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				if (!world.isClient) {
+					player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
 				return ActionResult.SUCCESS;
 			}
 
@@ -113,7 +117,9 @@ public class CortexMod implements ModInitializer {
 				if (!player.getAbilities().creativeMode) {
 					stack.decrement(1);
 				}
-				player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				if (!world.isClient) {
+					player.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
 				return ActionResult.SUCCESS;
 			}
 
@@ -130,9 +136,9 @@ public class CortexMod implements ModInitializer {
 				player.getInventory().offerOrDrop(new ItemStack(Items.NETHERITE_INGOT));
 				// This wouldn't be needed if we were adding behavior directly to a grindstone
 				if (!player.getAbilities().creativeMode) {
-					// Gets the new damaged anvil state
-					var newState = AnvilBlock.getLandingState(state);
 					if (!world.isClient()) {
+						// Gets the new damaged anvil state
+						var newState = AnvilBlock.getLandingState(state);
 						if (newState != null) {
 							// If newState isn't null, it means we can safely set the block and make the anvil hitting noise
 							world.setBlockState(pos, AnvilBlock.getLandingState(state), Block.NOTIFY_LISTENERS);
