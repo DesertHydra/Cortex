@@ -89,8 +89,8 @@ java {
 
 // If you plan to use a different file for the license, don't forget to change the file name here!
 jar {
-	from('LICENSE') {
-		rename { "${it}_${base.archivesName.get()}" }
+	from("LICENSE") {
+		rename("LICENSE", "LICENSE_${project.name}")
 	}
 }
 
