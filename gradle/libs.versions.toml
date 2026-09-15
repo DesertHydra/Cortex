@@ -1,6 +1,7 @@
 # The latest versions are available at https://fabricmc.net/develop/
 [versions]
 minecraft = "26.1.2"
+java = "25"
 
 fabric_loom = "1.18.1" # https://maven.fabricmc.net/net/fabricmc/fabric-loom/net.fabricmc.fabric-loom.gradle.plugin/
 fabric_loader = "0.19.5"
