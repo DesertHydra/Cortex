@@ -5,47 +5,48 @@
  */
 package deserthydra.cortex.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SuspiciousSoulSandBlock extends SolidBrushableBlock {
-	protected static final VoxelShape COLLISION_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 14.0, 16.0);
 
-	public SuspiciousSoulSandBlock(Block block, SoundEvent brushingSound, SoundEvent brushingCompleteSound, Settings settings) {
-		super(block, brushingSound, brushingCompleteSound, settings);
+	public SuspiciousSoulSandBlock(Block block, SoundEvent brushingSound, SoundEvent brushingCompleteSound, BlockBehaviour.Properties properties) {
+		super(block, brushingSound, brushingCompleteSound, properties);
 	}
 
 	@Override
-	protected VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return COLLISION_SHAPE;
+	protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return Blocks.SOUL_SAND.defaultBlockState().getCollisionShape(level, pos, context);
 	}
 
 	@Override
-	protected VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
-		return VoxelShapes.fullCube();
+	protected VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
+		return Blocks.SOUL_SAND.defaultBlockState().getBlockSupportShape(level, pos);
 	}
 
 	@Override
-	protected VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return VoxelShapes.fullCube();
+	protected VoxelShape getVisualShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return Blocks.SOUL_SAND.defaultBlockState().getVisualShape(level, pos, context);
+	}
+
+	@Override
+	protected boolean isPathfindable(BlockState state, PathComputationType type) {
+		return Blocks.SOUL_SAND.defaultBlockState().isPathfindable(type);
+	}
+
+	@Override
+	protected float getShadeBrightness(BlockState state, BlockGetter level, BlockPos pos) {
+		return Blocks.SOUL_SAND.defaultBlockState().getShadeBrightness(level, pos);
 	}
 
 	// Maybe a brittle soul sand with netherite inside shouldn't bubble
-
-	@Override
-	protected boolean canPathfindThrough(BlockState state, NavigationType navigationType) {
-		return false;
-	}
-
-	@Override
-	protected float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
-		return 0.2F;
-	}
 }

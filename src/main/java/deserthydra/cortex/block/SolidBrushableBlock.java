@@ -5,37 +5,40 @@
  */
 package deserthydra.cortex.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BrushableBlock;
-import net.minecraft.block.entity.BrushableBlockEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.random.RandomGenerator;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.TickSchedulerAccess;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BrushableBlock;
+import net.minecraft.world.level.block.entity.BrushableBlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class SolidBrushableBlock extends BrushableBlock {
-	public SolidBrushableBlock(Block block, SoundEvent brushingSound, SoundEvent brushingCompleteSound, Settings settings) {
-		super(block, brushingSound, brushingCompleteSound, settings);
+	public SolidBrushableBlock(Block block, SoundEvent brushingSound, SoundEvent brushingCompleteSound, BlockBehaviour.Properties properties) {
+		super(block, brushingSound, brushingCompleteSound, properties);
 	}
 
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, TickSchedulerAccess tickSchedulerAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomGenerator random) {
-		tickSchedulerAccess.scheduleBlockTick(pos, this, 2);
-		return super.getStateForNeighborUpdate(state, world, tickSchedulerAccess, pos, direction, neighborPos, neighborState, random);
+	public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
+		ticks.scheduleTick(pos, this, 2);
+		return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
 	}
 
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, RandomGenerator random) {
-		if (world.getBlockEntity(pos) instanceof BrushableBlockEntity brushableBlockEntity) {
-			brushableBlockEntity.tickBrushCountReset(world);
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if(level.getBlockEntity(pos) instanceof BrushableBlockEntity blockEntity) {
+			blockEntity.checkReset(level);
 		}
 	}
 
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, RandomGenerator random) {}
+	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+	}
 }

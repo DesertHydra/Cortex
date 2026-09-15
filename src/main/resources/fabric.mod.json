@@ -6,7 +6,17 @@
   "description": "An overhaul of the 'mine' part of Minecraft without redesigning or adding ores.",
   "authors": [
     "Ennui Langeweile",
-    "Isan AWrathfulVoid"
+    "Isan AWrathfulVoid",
+    {
+      "name": "Up",
+      "contact": {
+        "homepage": "https://upcraft.dev",
+        "github": "https://github.com/UpcraftLP",
+        "bsky": "https://bsky.app/profile/did:plc:77uzn2lx2zhtdgr5zfvzumji",
+        "curseforge": "https://www.curseforge.com/members/upcraftlp",
+        "modrinth": "https://modrinth.com/user/Up"
+      }
+    }
   ],
   "contact": {
     "homepage": "https://modrinth.com/mod/cortex",
@@ -21,11 +31,11 @@
     "main": ["deserthydra.cortex.CortexMod"]
   },
   "mixins": ["cortex.mixins.json"],
-  "accessWidener": "cortex.accesswidener",
+  "accessWidener": "cortex.classtweaker",
   "depends": {
-    "fabricloader": ">=0.16.2",
-    "minecraft": "~1.21.1",
-    "java": ">=21",
-    "fabric-api": ">=0.102.0"
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.1.2",
+    "java": ">=25",
+    "fabric-api": ">=0.155.3+26.1.2"
   }
 }

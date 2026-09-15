@@ -1,9 +1,0 @@
-{
-  "type": "cortex:anvil",
-  "addition": "minecraft:netherite_ingot",
-  "base": "minecraft:diamond_hoe",
-  "result": {
-    "count": 1,
-    "id": "minecraft:netherite_hoe"
-  }
-}

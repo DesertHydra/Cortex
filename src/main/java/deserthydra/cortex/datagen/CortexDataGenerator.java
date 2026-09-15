@@ -5,125 +5,50 @@
  */
 package deserthydra.cortex.datagen;
 
-import deserthydra.cortex.block.CortexBlocks;
-import deserthydra.cortex.block.RedstoneFormationBlock;
-import deserthydra.cortex.worldgen.CortexConfiguredFeatures;
-import deserthydra.cortex.worldgen.CortexPlacedFeatures;
+import deserthydra.cortex.datagen.client.CortexEnglishLanguageProvider;
+import deserthydra.cortex.datagen.client.CortexEnglishLanguageProviderOverride;
+import deserthydra.cortex.datagen.client.CortexModelProvider;
+import deserthydra.cortex.datagen.common.*;
+import deserthydra.cortex.datagen.common.loot.CortexArcheologyLoot;
+import deserthydra.cortex.datagen.common.loot.CortexChestLoot;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.registry.BootstrapContext;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistrySetBuilder;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.collection.DataPool;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.blockpredicate.BlockPredicate;
-import net.minecraft.world.gen.decorator.BiomePlacementModifier;
-import net.minecraft.world.gen.decorator.CountPlacementModifier;
-import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.util.ConfiguredFeatureUtil;
-import net.minecraft.world.gen.feature.util.PlacedFeatureUtil;
-import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
-import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+
+import java.util.List;
+import java.util.Set;
 
 public class CortexDataGenerator implements DataGeneratorEntrypoint {
-	@Override
-	public void onInitializeDataGenerator(FabricDataGenerator generator) {
-		var pack = generator.createPack();
-		pack.addProvider(CortexBlockLootTableProvider::new);
-		pack.addProvider(CortexBlockTagProvider::new);
-		pack.addProvider(CortexLanguageProvider::new);
-		pack.addProvider(CortexLootTableProvider::new);
-		pack.addProvider(CortexModelProvider::new);
-		pack.addProvider(CortexRecipeProvider.CortexRecipeGenerator::new);
-		pack.addProvider(CortexWorldGenProvider::new);
-	}
 
 	@Override
 	public void buildRegistry(RegistrySetBuilder builder) {
-		builder.add(RegistryKeys.CONFIGURED_FEATURE, this::bootstrapConfiguredFeatures);
-		builder.add(RegistryKeys.PLACED_FEATURE, this::bootstrapPlacedFeatures);
+		builder.add(Registries.CONFIGURED_FEATURE, CortexFeatureProvider::bootstrapConfiguredFeatures);
+		builder.add(Registries.PLACED_FEATURE, CortexFeatureProvider::bootstrapPlacedFeatures);
 	}
 
-	private void bootstrapConfiguredFeatures(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-		DataPool.Builder<BlockState> redstoneDataPool = DataPool.builder();
-		for (var direction : Direction.Type.HORIZONTAL) {
-			redstoneDataPool.addWeighted(CortexBlocks.REDSTONE_FORMATION.getDefaultState().with(RedstoneFormationBlock.FACING, direction), 1);
-		}
+	@Override
+	public void onInitializeDataGenerator(FabricDataGenerator generator) {
+		var pack = generator.createPack();
 
-		ConfiguredFeatureUtil.register(
-			context,
-			CortexConfiguredFeatures.REDSTONE_FORMATIONS,
-			Feature.RANDOM_PATCH,
-			new RandomPatchFeatureConfig(
-				128,
-				7,
-				3,
-				PlacedFeatureUtil.filtered(
-					Feature.SIMPLE_BLOCK,
-					new SimpleBlockFeatureConfig(
-						new WeightedBlockStateProvider(redstoneDataPool)
-					),
-					BlockPredicate.allOf(
-						BlockPredicate.IS_AIR_OR_WATER,
-						BlockPredicate.matchingBlockTags(Vec3i.ZERO.down(), BlockTags.REDSTONE_ORES)
-					)
-				)
-			)
-		);
+		// common
+		pack.addProvider(CortexBlockLootTableProvider::new);
+		pack.addProvider(CortexBlockTagProvider::new);
+		// TODO fill required table IDs
+		pack.addProvider((output, registriesFuture) -> new LootTableProvider(output, Set.of(), List.of(
+			new LootTableProvider.SubProviderEntry(CortexArcheologyLoot::new, LootContextParamSets.ARCHAEOLOGY),
+			new LootTableProvider.SubProviderEntry(CortexChestLoot::new, LootContextParamSets.CHEST)
+		), registriesFuture));
+		pack.addProvider(CortexRecipeProvider.CortexRecipeGenerator::new);
+		pack.addProvider(CortexWorldGenProvider::new);
 
-		DataPool.Builder<BlockState> lapisLazuliDataPool = DataPool.builder();
-		for (var direction : Direction.Type.HORIZONTAL) {
-			lapisLazuliDataPool.addWeighted(CortexBlocks.LAPIS_FORMATION.getDefaultState().with(Properties.HORIZONTAL_FACING, direction), 1);
-		}
+		// client
+		pack.addProvider(CortexModelProvider::new);
+		pack.addProvider(CortexEnglishLanguageProvider::new);
 
-		ConfiguredFeatureUtil.register(
-			context,
-			CortexConfiguredFeatures.LAPIS_FORMATIONS,
-			Feature.RANDOM_PATCH,
-			new RandomPatchFeatureConfig(
-				196,
-				7,
-				3,
-				PlacedFeatureUtil.filtered(
-					Feature.SIMPLE_BLOCK,
-					new SimpleBlockFeatureConfig(
-						new WeightedBlockStateProvider(lapisLazuliDataPool)
-					),
-					BlockPredicate.allOf(
-						BlockPredicate.IS_AIR_OR_WATER,
-						BlockPredicate.matchingBlockTags(Vec3i.ZERO.down(), BlockTags.LAPIS_ORES)
-					)
-				)
-			)
-		);
-	}
-
-	private void bootstrapPlacedFeatures(BootstrapContext<PlacedFeature> context) {
-		var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
-
-		PlacedFeatureUtil.register(
-			context,
-			CortexPlacedFeatures.REDSTONE_FORMATIONS,
-			configuredFeatures.getHolderOrThrow(CortexConfiguredFeatures.REDSTONE_FORMATIONS),
-			CountPlacementModifier.create(196),
-			HeightRangePlacementModifier.create(UniformHeightProvider.create(YOffset.aboveBottom(-31), YOffset.fixed(16))),
-			BiomePlacementModifier.getInstance()
-		);
-
-		PlacedFeatureUtil.register(
-			context,
-			CortexPlacedFeatures.LAPIS_FORMATIONS,
-			configuredFeatures.getHolderOrThrow(CortexConfiguredFeatures.LAPIS_FORMATIONS),
-			CountPlacementModifier.create(128),
-			HeightRangePlacementModifier.create(UniformHeightProvider.create(YOffset.fixed(-31), YOffset.fixed(33))),
-			BiomePlacementModifier.getInstance()
-		);
+		// vanilla override
+		pack.addProvider(CortexEnglishLanguageProviderOverride::new);
 	}
 }

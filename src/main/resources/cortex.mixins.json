@@ -5,10 +5,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AnvilScreenHandlerMixin",
-    "BrewingRecipeRegistryMixin",
-    "ItemGroupsMixin",
-    "NetherFossilGeneratorPieceMixin",
-    "RuinedPortalStructurePieceMixin"
+    "CreativeModeTabsMixin",
+    "DispenserBlockMixin",
+    "NetherFossilPieceMixin",
+    "PotionBrewingMixin",
+    "RuinedPortalPieceMixin"
   ],
   "injectors": {
     "defaultRequire": 1

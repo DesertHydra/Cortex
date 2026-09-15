@@ -9,20 +9,17 @@ base {
 
 version = "$project.version+${libs.versions.minecraft.get()}"
 
-repositories {}
-
-fabricApi {
-	configureDataGeneration()
-}
-
-loom {
-	mods {
-		"cortex" {
-			sourceSet("main")
+repositories {
+	exclusiveContent {
+		forRepository {
+			maven {
+				url = "https://maven.blamejared.com"
+			}
+		}
+		filter {
+			includeGroup("mezz.jei")
 		}
 	}
-
-	accessWidenerPath = file("src/main/resources/cortex.accesswidener")
 }
 
 // All the dependencies are declared at gradle/libs.version.toml and referenced with "libs.<id>"
@@ -32,13 +29,43 @@ dependencies {
 	implementation libs.fabric.loader
 
 	implementation libs.fabric.api
+
+	localRuntime libs.jei.fabric
+}
+
+fabricApi {
+	configureDataGeneration() {
+		client = true
+		modId = "cortex"
+		strictValidation = true
+	}
+}
+
+loom {
+	mods {
+		"cortex" {
+			sourceSet("main")
+		}
+	}
+
+	accessWidenerPath = file("src/main/resources/cortex.classtweaker")
+
+	runs {
+		configureEach {
+			preferGradleTask = true
+		}
+	}
 }
 
 processResources {
-	inputs.properties 'version': version
+	def expandProps = [
+	    "version": version
+	]
+
+	inputs.properties expandProps
 
 	filesMatching('fabric.mod.json') {
-		expand 'version': version
+		expand expandProps
 	}
 
 	// It would be super confusing if the lang/README was on the JAR file

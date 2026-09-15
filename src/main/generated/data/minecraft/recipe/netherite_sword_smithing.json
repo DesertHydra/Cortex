@@ -1,0 +1,8 @@
+{
+  "type": "cortex:anvil",
+  "addition": "minecraft:netherite_ingot",
+  "base": "minecraft:diamond_sword",
+  "result": {
+    "id": "minecraft:netherite_sword"
+  }
+}

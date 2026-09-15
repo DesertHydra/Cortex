@@ -6,18 +6,38 @@
 package deserthydra.cortex.worldgen;
 
 import deserthydra.cortex.util.CortexUtils;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class CortexPlacedFeatures {
-	public static final RegistryKey<PlacedFeature> REDSTONE_FORMATIONS = RegistryKey.of(
-		RegistryKeys.PLACED_FEATURE,
+	public static final ResourceKey<PlacedFeature> REDSTONE_FORMATIONS = ResourceKey.create(
+		Registries.PLACED_FEATURE,
 		CortexUtils.id("redstone_formations")
 	);
 
-	public static final RegistryKey<PlacedFeature> LAPIS_FORMATIONS = RegistryKey.of(
-		RegistryKeys.PLACED_FEATURE,
+	public static final ResourceKey<PlacedFeature> LAPIS_FORMATIONS = ResourceKey.create(
+		Registries.PLACED_FEATURE,
 		CortexUtils.id("lapis_formations")
+	);
+
+	public static final ResourceKey<PlacedFeature> ORE_COPPER = ResourceKey.create(
+		Registries.PLACED_FEATURE,
+		CortexUtils.id("ore_copper")
+	);
+
+	public static final ResourceKey<PlacedFeature> ORE_COPPER_LARGE = ResourceKey.create(
+		Registries.PLACED_FEATURE,
+		CortexUtils.id("ore_copper_large")
+	);
+
+	public static final ResourceKey<PlacedFeature> ORE_REDSTONE = ResourceKey.create(
+		Registries.PLACED_FEATURE,
+		CortexUtils.id("ore_redstone")
+	);
+
+	public static final ResourceKey<PlacedFeature> ORE_REDSTONE_LOWER = ResourceKey.create(
+		Registries.PLACED_FEATURE,
+		CortexUtils.id("ore_redstone_lower")
 	);
 }

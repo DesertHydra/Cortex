@@ -1,0 +1,9 @@
+{
+  "type": "cortex:grindstone_grinding",
+  "allow_dispenser_crafting": true,
+  "ingredient": "cortex:redstone",
+  "result": {
+    "count": 4,
+    "id": "minecraft:redstone"
+  }
+}

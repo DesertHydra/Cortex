@@ -1,7 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
-  "group": "cortex_redstone",
   "key": {
     "#": "minecraft:redstone"
   },
@@ -10,7 +9,6 @@
     "##"
   ],
   "result": {
-    "count": 1,
     "id": "cortex:redstone"
   }
 }

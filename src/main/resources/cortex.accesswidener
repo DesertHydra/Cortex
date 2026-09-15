@@ -1,3 +1,0 @@
-accessWidener v2 official
-
-accessible method net/minecraft/block/Blocks register (Lnet/minecraft/registry/RegistryKey;Ljava/util/function/Function;Lnet/minecraft/block/AbstractBlock$Settings;)Lnet/minecraft/block/Block;

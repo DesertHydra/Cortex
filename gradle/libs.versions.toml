@@ -1,17 +1,22 @@
-# The latest versions are available at https://quiltmc.org/en/usage/latest-versions/
+# The latest versions are available at https://fabricmc.net/develop/
 [versions]
-minecraft = "26.1-snapshot-9"
+minecraft = "26.1.2"
 
-fabric_loom = "1.15.3"
-fabric_loader = "0.18.4"
+fabric_loom = "1.18.1" # https://maven.fabricmc.net/net/fabricmc/fabric-loom/net.fabricmc.fabric-loom.gradle.plugin/
+fabric_loader = "0.19.5"
 
-fabric_api = "0.143.5+26.1"
+fabric_api = "0.155.3+26.1.2"
+
+jei = "29.37.0.98"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
 fabric_loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric_loader" }
 
 fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric_api" }
+
+jei_fabric_api = { module = "mezz.jei:jei-26.1.2-fabric-api", version.ref = "jei" }
+jei_fabric = { module = "mezz.jei:jei-26.1.2-fabric", version.ref = "jei" }
 
 # If you have multiple similar dependencies, you can declare a dependency bundle and reference it on the build script with "libs.bundles.example".
 [bundles]

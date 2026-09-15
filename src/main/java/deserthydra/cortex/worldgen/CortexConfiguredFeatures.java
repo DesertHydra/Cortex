@@ -6,18 +6,18 @@
 package deserthydra.cortex.worldgen;
 
 import deserthydra.cortex.util.CortexUtils;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class CortexConfiguredFeatures {
-	public static final RegistryKey<ConfiguredFeature<?, ?>> REDSTONE_FORMATIONS = RegistryKey.of(
-		RegistryKeys.CONFIGURED_FEATURE,
+	public static final ResourceKey<ConfiguredFeature<?, ?>> REDSTONE_FORMATIONS = ResourceKey.create(
+		Registries.CONFIGURED_FEATURE,
 		CortexUtils.id("redstone_formations")
 	);
 
-	public static final RegistryKey<ConfiguredFeature<?, ?>> LAPIS_FORMATIONS = RegistryKey.of(
-		RegistryKeys.CONFIGURED_FEATURE,
+	public static final ResourceKey<ConfiguredFeature<?, ?>> LAPIS_FORMATIONS = ResourceKey.create(
+		Registries.CONFIGURED_FEATURE,
 		CortexUtils.id("lapis_formations")
 	);
 }

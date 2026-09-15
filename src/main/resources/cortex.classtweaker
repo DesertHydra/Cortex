@@ -1,0 +1,20 @@
+classTweaker v2 official
+
+# registry helpers
+accessible method net/minecraft/world/item/Items registerItem (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Function;Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;
+accessible method net/minecraft/world/item/Items registerBlock (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;
+
+# datagen
+accessible field net/minecraft/world/level/storage/loot/parameters/LootContextParamSets REGISTRY Lcom/google/common/collect/BiMap;
+
+# suspicious soul sand
+accessible method net/minecraft/world/level/block/Blocks postProcessAbove (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+accessible field net/minecraft/world/level/block/SoulSandBlock SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+
+# crystal formations
+accessible field net/minecraft/client/data/models/BlockModelGenerators ROTATION_HORIZONTAL_FACING Lnet/minecraft/client/data/models/blockstates/PropertyDispatch;
+
+# grindstone grinding dispenser compat
+accessible method net/minecraft/core/dispenser/DefaultDispenseItemBehavior playDefaultSound (Lnet/minecraft/core/dispenser/BlockSource;)V
+accessible method net/minecraft/core/dispenser/DefaultDispenseItemBehavior playDefaultAnimation (Lnet/minecraft/core/dispenser/BlockSource;Lnet/minecraft/core/Direction;)V
+accessible method net/minecraft/core/dispenser/DefaultDispenseItemBehavior consumeWithRemainder (Lnet/minecraft/core/dispenser/BlockSource;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;

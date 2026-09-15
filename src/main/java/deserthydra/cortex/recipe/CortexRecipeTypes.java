@@ -5,22 +5,17 @@
  */
 package deserthydra.cortex.recipe;
 
+import deserthydra.cortex.recipe.anvil.AnvilRecipe;
+import deserthydra.cortex.recipe.grinding.GrindstoneGrindingRecipe;
 import deserthydra.cortex.util.CortexUtils;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import deserthydra.cortex.util.RegistryUtils;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.crafting.RecipeType;
 
 public class CortexRecipeTypes {
-	public static final RecipeType<AnvilRecipe> ANVIL = Registry.register(
-		Registries.RECIPE_TYPE,
-		CortexUtils.id("anvil"),
-		new RecipeType<AnvilRecipe>() {
-			@Override
-			public String toString() {
-				return "cortex:anvil";
-			}
-		}
-	);
+	public static final RecipeType<AnvilRecipe> ANVIL = RegistryUtils.registerRecipeType("anvil");
+	public static final RecipeType<GrindstoneGrindingRecipe> GRINDSTONE_GRINDING = RegistryUtils.registerRecipeType("grindstone_grinding");
 
 	public static void init() {}
 }

@@ -1,0 +1,8 @@
+{
+  "type": "cortex:anvil",
+  "addition": "minecraft:netherite_ingot",
+  "base": "minecraft:diamond_shovel",
+  "result": {
+    "id": "minecraft:netherite_shovel"
+  }
+}

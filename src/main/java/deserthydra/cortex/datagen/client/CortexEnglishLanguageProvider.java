@@ -1,0 +1,35 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+package deserthydra.cortex.datagen.client;
+
+import deserthydra.cortex.block.CortexBlocks;
+import deserthydra.cortex.item.CortexItems;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.core.HolderLookup;
+
+import java.util.concurrent.CompletableFuture;
+
+public class CortexEnglishLanguageProvider extends FabricLanguageProvider {
+	public CortexEnglishLanguageProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+		super(dataOutput, registryLookup);
+	}
+
+	@Override
+	public void generateTranslations(HolderLookup.Provider lookup, TranslationBuilder builder) {
+		builder.add(CortexBlocks.REDSTONE_FORMATION, "Redstone Formation");
+		builder.add(CortexBlocks.LAPIS_FORMATION, "Lapis Lazuli Formation");
+		builder.add(CortexBlocks.SUSPICIOUS_NETHERRACK, "Suspicious Netherrack");
+		builder.add(CortexBlocks.SUSPICIOUS_SOUL_SAND, "Suspicious Soul Sand");
+		builder.add(CortexBlocks.SUSPICIOUS_SOUL_SOIL, "Suspicious Soul Soil");
+
+		builder.add(CortexItems.RAW_DIAMOND, "Raw Diamond");
+		builder.add(CortexItems.RAW_EMERALD, "Raw Emerald");
+		builder.add(CortexItems.REDSTONE, "Redstone");
+		builder.add(CortexItems.ANCIENT_DEBRIS, "Ancient Debris");
+		builder.add(CortexItems.MOLTEN_DEBRIS, "Molten Debris");
+	}
+}

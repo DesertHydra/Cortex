@@ -5,52 +5,70 @@
  */
 package deserthydra.cortex.util;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Function;
 
 public class RegistryUtils {
-	private static RegistryKey<Block> createBlockKey(String path) {
-		return RegistryKey.of(RegistryKeys.BLOCK, CortexUtils.id(path));
+	private static ResourceKey<Block> createBlockKey(String path) {
+		return ResourceKey.create(Registries.BLOCK, CortexUtils.id(path));
 	}
 
-	private static Block register(String path, AbstractBlock.Settings settings) {
-		return Blocks.register(createBlockKey(path), Block::new, settings);
+	private static Block register(String name, BlockBehaviour.Properties settings) {
+		return register(name, Block::new, settings);
 	}
 
-	public static Block register(String path, Function<AbstractBlock.Settings, Block> function, AbstractBlock.Settings settings) {
-		return Blocks.register(createBlockKey(path), function, settings);
+	public static Block register(String name, Function<BlockBehaviour.Properties, Block> function, BlockBehaviour.Properties settings) {
+		return Blocks.register(createBlockKey(name), function, settings);
 	}
 
 	// TODO - Add more helper functions here if necessary
 
-	private static RegistryKey<Item> createItemKey(String path) {
-		return RegistryKey.of(RegistryKeys.ITEM, CortexUtils.id(path));
+	private static ResourceKey<Item> createItemKey(String path) {
+		return ResourceKey.create(Registries.ITEM, CortexUtils.id(path));
 	}
 
-	public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
-		return Items.register(createItemKey(path), factory, settings);
+	public static Item register(String path, Function<Item.Properties, Item> factory, Item.Properties settings) {
+		return Items.registerItem(createItemKey(path), factory, settings);
 	}
 
-	public static Item register(String path, Function<Item.Settings, Item> factory) {
-		return Items.register(createItemKey(path), factory);
+	public static Item register(String path, Function<Item.Properties, Item> factory) {
+		return register(path, factory, new Item.Properties());
 	}
 
-	public static Item register(String path, Item.Settings settings) {
-		return Items.register(createItemKey(path), Item::new, settings);
+	public static Item register(String path, Item.Properties settings) {
+		return register(path, Item::new, settings);
 	}
 
 	public static Item register(String path) {
-		return Items.register(createItemKey(path), Item::new, new Item.Settings());
+		return register(path, Item::new, new Item.Properties());
 	}
 
-	public static Item register(Block block, Item.Settings settings) {
-		return Items.register(block, settings);
+	public static Item registerBlock(Block block, Item.Properties settings) {
+		return Items.registerBlock(block, settings);
+	}
+
+	public static Item registerBlock(Block block) {
+		return Items.registerBlock(block, new Item.Properties());
+	}
+
+	public static <T extends Recipe<?>> RecipeType<T> registerRecipeType(String name) {
+		var id = ResourceKey.create(Registries.RECIPE_TYPE, CortexUtils.id(name));
+		return Registry.register(BuiltInRegistries.RECIPE_TYPE, id, new RecipeType<T>() {
+			@Override
+			public String toString() {
+				return id.toString();
+			}
+		});
 	}
 }

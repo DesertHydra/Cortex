@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_emerald": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cortex:raw_emerald"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cortex:emerald_grindstone_grinding"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_emerald"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cortex:emerald_grindstone_grinding"
+    ]
+  }
+}

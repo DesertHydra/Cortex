@@ -1,17 +1,22 @@
 {
   "pack": {
-    "pack_format": 48,
-    "description": "Please don't tell me you're seeing this."
+    "description": "Please don't tell me you're seeing this.",
+    "min_format": [84, 0],
+    "max_format": [999999999, 0]
   },
   "filter": {
     "block": [
       {
-        "namespace": "minecraft",
-        "path": "redstone_from_.*redstone_ore"
+        "namespace": "^minecraft$",
+        "path": "^recipe/redstone_from_.*redstone_ore"
       },
       {
-        "namespace": "minecraft",
-        "path": "recipe.*netherite(?!_block)"
+        "namespace": "^minecraft$",
+        "path": "^recipe/.*netherite(?!_block)"
+      },
+      {
+        "namespace": "^minecraft$",
+        "path": "^recipe/redstone.*\\.json$"
       }
     ]
   }
