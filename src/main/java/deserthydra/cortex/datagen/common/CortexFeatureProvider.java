@@ -40,7 +40,7 @@ public class CortexFeatureProvider {
 		context.register(CortexPlacedFeatures.REDSTONE_FORMATIONS, new PlacedFeature(
 			configuredFeatures.getOrThrow(CortexConfiguredFeatures.REDSTONE_FORMATIONS),
 			List.of(
-				CountPlacement.of(128),
+				CountPlacement.of(4096),
 				RandomOffsetPlacement.ofTriangle(7, 3),
 				HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(-31), VerticalAnchor.absolute(16)),
 				BiomeFilter.biome(),
@@ -54,7 +54,7 @@ public class CortexFeatureProvider {
 		context.register(CortexPlacedFeatures.LAPIS_FORMATIONS, new PlacedFeature(
 			configuredFeatures.getOrThrow(CortexConfiguredFeatures.LAPIS_FORMATIONS),
 			List.of(
-				CountPlacement.of(196),
+				CountPlacement.of(4096),
 				RandomOffsetPlacement.ofTriangle(7, 3),
 				HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(-31), VerticalAnchor.absolute(33)),
 				BiomeFilter.biome(),
@@ -67,28 +67,28 @@ public class CortexFeatureProvider {
 
 		// these replace vanilla ore gen
 		context.register(CortexPlacedFeatures.ORE_COPPER, new PlacedFeature(configuredFeatures.getOrThrow(OreFeatures.ORE_COPPPER_SMALL), List.of(
-			CountPlacement.of(8),
+			CountPlacement.of(5),
 			InSquarePlacement.spread(),
 			HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)),
 			BiomeFilter.biome()
 		)));
 
 		context.register(CortexPlacedFeatures.ORE_COPPER_LARGE, new PlacedFeature(configuredFeatures.getOrThrow(OreFeatures.ORE_COPPER_LARGE), List.of(
-			CountPlacement.of(8),
+			CountPlacement.of(5),
 			InSquarePlacement.spread(),
 			HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)),
 			BiomeFilter.biome()
 		)));
 
 		context.register(CortexPlacedFeatures.ORE_REDSTONE, new PlacedFeature(configuredFeatures.getOrThrow(OreFeatures.ORE_REDSTONE), List.of(
-			CountPlacement.of(2),
+			CountPlacement.of(3),
 			InSquarePlacement.spread(),
 			HeightRangePlacement.uniform(VerticalAnchor.BOTTOM, VerticalAnchor.absolute(15)),
 			BiomeFilter.biome()
 		)));
 
 		context.register(CortexPlacedFeatures.ORE_REDSTONE_LOWER, new PlacedFeature(configuredFeatures.getOrThrow(OreFeatures.ORE_REDSTONE), List.of(
-			CountPlacement.of(4),
+			CountPlacement.of(5),
 			InSquarePlacement.spread(),
 			HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)),
 			BiomeFilter.biome()
