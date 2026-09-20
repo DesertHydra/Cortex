@@ -3,7 +3,7 @@ plugins {
 	alias(libs.plugins.fabric.loom)
 }
 
-version = "$project.version+${libs.versions.minecraft.get()}"
+version = "${project.version}+${libs.versions.minecraft.get()}"
 
 val modID = providers.gradleProperty("mod_id")
 
