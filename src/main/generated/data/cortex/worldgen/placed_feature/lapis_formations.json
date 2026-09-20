@@ -60,7 +60,7 @@
               -1,
               0
             ],
-            "tag": "minecraft:lapis_ores"
+            "tag": "c:ores/lapis"
           }
         ]
       }

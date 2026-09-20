@@ -5,12 +5,12 @@ import deserthydra.cortex.block.LapisFormationBlock;
 import deserthydra.cortex.block.RedstoneFormationBlock;
 import deserthydra.cortex.worldgen.CortexConfiguredFeatures;
 import deserthydra.cortex.worldgen.CortexPlacedFeatures;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.OreFeatures;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Util;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.block.state.BlockState;
@@ -45,7 +45,7 @@ public class CortexFeatureProvider {
 				BiomeFilter.biome(),
 				BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
 					BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE,
-					BlockPredicate.matchesTag(Vec3i.ZERO.below(), BlockTags.REDSTONE_ORES)
+					BlockPredicate.matchesTag(Vec3i.ZERO.below(), ConventionalBlockTags.REDSTONE_ORES)
 				))
 			)
 		));
@@ -59,7 +59,7 @@ public class CortexFeatureProvider {
 				BiomeFilter.biome(),
 				BlockPredicateFilter.forPredicate(BlockPredicate.allOf(
 					BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE,
-					BlockPredicate.matchesTag(Vec3i.ZERO.below(), BlockTags.LAPIS_ORES)
+					BlockPredicate.matchesTag(Vec3i.ZERO.below(), ConventionalBlockTags.LAPIS_ORES)
 				))
 			)
 		));
