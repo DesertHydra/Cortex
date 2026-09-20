@@ -8,7 +8,10 @@ package deserthydra.cortex.util;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.references.BlockItemIds;
+import net.minecraft.references.ItemIds;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
@@ -18,6 +21,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class RegistryUtils {
 	private static ResourceKey<Block> createBlockKey(String path) {
@@ -54,12 +58,15 @@ public class RegistryUtils {
 		return register(path, Item::new, new Item.Properties());
 	}
 
-	public static Item registerBlock(Block block, Item.Properties settings) {
-		return Items.registerBlock(block, settings);
+	@SuppressWarnings("deprecation")
+	public static Item registerBlock(Block block, UnaryOperator<Item.Properties> settings) {
+		var blockKey = block.builtInRegistryHolder().key();
+		var itemKey = ResourceKey.create(Registries.ITEM, blockKey.identifier());
+		return Items.registerItem(itemKey, properties -> new BlockItem(block, properties), settings.apply(new Item.Properties().useBlockDescriptionPrefix()));
 	}
 
 	public static Item registerBlock(Block block) {
-		return Items.registerBlock(block, new Item.Properties());
+		return registerBlock(block, UnaryOperator.identity());
 	}
 
 	public static <T extends Recipe<?>> RecipeType<T> registerRecipeType(String name) {

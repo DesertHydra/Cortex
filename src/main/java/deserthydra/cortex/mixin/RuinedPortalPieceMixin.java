@@ -16,6 +16,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -66,12 +67,12 @@ public abstract class RuinedPortalPieceMixin {
 		)
 	)
 	private boolean modifyNetherrackBottom(LevelAccessor instance, BlockPos pos, BlockState blockState, int flags, Operation<Boolean> original) {
-		if (UNDER_PORTAL.get() && this.properties.replaceWithBlackstone && instance.getRandom().nextFloat() < 0.05F) {
+		if (UNDER_PORTAL.get() && this.properties.replaceWithBlackstone() && instance.getRandom().nextFloat() < 0.05F) {
 			boolean noEmptyNeighbors = BlockPos.withinManhattanStream(pos, 0, 2, 0).allMatch(outPos -> instance.getBlockState(outPos).canOcclude());
 			boolean noNearbyNeighbors = BlockPos.withinManhattanStream(pos, 1, 1, 1).noneMatch(outPos -> instance.getBlockState(outPos).is(CortexBlocks.SUSPICIOUS_NETHERRACK));
 			if (noEmptyNeighbors && noNearbyNeighbors) {
 				var value = original.call(instance, pos, CortexBlocks.SUSPICIOUS_NETHERRACK.defaultBlockState(), flags);
-				instance.getBlockEntity(pos, BlockEntityType.BRUSHABLE_BLOCK).ifPresent(block -> block.setLootTable(CortexLootTables.NETHER_RUINED_PORTAL_ARCHAEOLOGY, pos.asLong()));
+				instance.getBlockEntity(pos, BlockEntityTypes.BRUSHABLE_BLOCK).ifPresent(block -> block.setLootTable(CortexLootTables.NETHER_RUINED_PORTAL_ARCHAEOLOGY, pos.asLong()));
 				return value;
 			}
 		}

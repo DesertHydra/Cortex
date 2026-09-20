@@ -16,7 +16,7 @@ public abstract class CreativeModeTabsMixin {
 	}
 
 	@ModifyExpressionValue(
-		method = "lambda$bootstrap$25",
+		method = "lambda$bootstrap$27",
 		at = @At(
 			value = "FIELD",
 			opcode = Opcodes.GETSTATIC,

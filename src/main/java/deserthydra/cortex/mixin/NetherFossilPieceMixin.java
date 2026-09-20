@@ -17,6 +17,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -65,7 +66,7 @@ public abstract class NetherFossilPieceMixin extends TemplateStructurePiece {
 								boolean noNearbyNeighbors = BlockPos.withinManhattanStream(mutable, 2, 2, 2).noneMatch(outPos -> BLOCKS_TO_SUSPICIOUS_BLOCKS.containsValue(level.getBlockState(outPos)));
 								if (noNearbyNeighbors) {
 									level.setBlock(mutable, replacementState, Block.UPDATE_CLIENTS);
-									level.getBlockEntity(mutable, BlockEntityType.BRUSHABLE_BLOCK).ifPresent(block -> block.setLootTable(CortexLootTables.NETHER_FOSSIL_ARCHAEOLOGY, mutable.asLong()));
+									level.getBlockEntity(mutable, BlockEntityTypes.BRUSHABLE_BLOCK).ifPresent(block -> block.setLootTable(CortexLootTables.NETHER_FOSSIL_ARCHAEOLOGY, mutable.asLong()));
 									break;
 								}
 							}

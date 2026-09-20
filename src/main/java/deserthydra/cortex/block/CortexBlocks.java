@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -97,8 +98,8 @@ public class CortexBlocks {
 	);
 
 	public static void init() {
-		BlockEntityType.BRUSHABLE_BLOCK.addValidBlock(SUSPICIOUS_NETHERRACK);
-		BlockEntityType.BRUSHABLE_BLOCK.addValidBlock(SUSPICIOUS_SOUL_SAND);
-		BlockEntityType.BRUSHABLE_BLOCK.addValidBlock(SUSPICIOUS_SOUL_SOIL);
+		BlockEntityTypes.BRUSHABLE_BLOCK.addValidBlock(SUSPICIOUS_NETHERRACK);
+		BlockEntityTypes.BRUSHABLE_BLOCK.addValidBlock(SUSPICIOUS_SOUL_SAND);
+		BlockEntityTypes.BRUSHABLE_BLOCK.addValidBlock(SUSPICIOUS_SOUL_SOIL);
 	}
 }

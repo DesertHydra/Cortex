@@ -60,7 +60,7 @@
               -1,
               0
             ],
-            "tag": "minecraft:redstone_ores"
+            "tag": "c:ores/redstone"
           }
         ]
       }
