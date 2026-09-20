@@ -49,6 +49,7 @@ public class CortexDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(CortexEnglishLanguageProvider::new);
 
 		// vanilla override
+		pack.addProvider(CortexAdvancementProviderOverride::new);
 		pack.addProvider(CortexEnglishLanguageProviderOverride::new);
 	}
 }
